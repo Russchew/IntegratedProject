@@ -1,0 +1,16 @@
+.container{
+    font-size: 3rem ;
+}
+
+.assignment-clicker{
+    height: 100vh;
+    justify-content: center;
+}
+
+.row, h1{
+    margin-bottom: 20px;
+}
+
+#asgn{
+    text-align: center;
+}

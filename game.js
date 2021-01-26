@@ -1,6 +1,8 @@
 $(document).ready (function(){
     let assignment = 0;
-    let pens = 0
+    let pens = 0;
+    let paper = 0;
+    let paperAdd= 0;
     let number = 1
 
     $("#click").click(function(){
@@ -10,6 +12,10 @@ $(document).ready (function(){
     $("#pensCost").click(function(){
        buyPens();
     })
+
+    $("#paperCost").click(function(){
+        buyPaper();
+     })
 
     function assignmentAdd(number){
         assignment += number;
@@ -28,7 +34,21 @@ $(document).ready (function(){
         $("#pensCost") .text(`${nextPenCost} assignments`)
     }
 
+    function buyPaper(){
+        var paperCost = Math.floor(100 * Math.pow(1.2,paper));
+        if (assignment >= paperCost){
+            paper += 1;
+            assignment -= paperCost;
+            $("#asgn").text(`${assignment} assignment finished`)
+            $("#paper").text(`${paper} assignment`)
+            paperAdd = paper * 10
+        }
+        var nextPaperCost = Math.floor(100 * Math.pow(1.2,paper)); 
+        $("#paperCost").text(`${nextPaperCost} assignments`)
+    }
+
     window.setInterval(function(){
         assignmentAdd(pens);
+        assignmentAdd(paperAdd);
     }, 1000)
 })
