@@ -33,6 +33,17 @@ body{
 .upgradeItems{
     background-color: beige;
     padding: 50px;
-    margin-bottom: 10px;
+    margin: 5px 0px;
     font-size: 40px;
+}
+
+.modifiers button{
+    background-color: beige;
+    padding: 10px;
+    border: 0px;
+    font-size: 30px;
+}
+
+.modifiers{
+    margin: 10px 0px;
 }
