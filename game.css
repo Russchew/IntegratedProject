@@ -1,16 +1,38 @@
-.container{
-    font-size: 3rem ;
-}
-
-.assignment-clicker{
+body{
     height: 100vh;
-    justify-content: center;
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: palegoldenrod;
 }
 
-.row, h1{
-    margin-bottom: 20px;
-}
-
-#asgn{
+.clicker{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.clicker h1, .upgrades h1{
+    margin: 5px 0px;
+    font-size: 50px;
+}
+
+.clicker p{
+    font-size: 30px;
+    margin: 0px 0px 20px 0px;
+}
+
+.upgrades{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.upgradeItems{
+    background-color: beige;
+    padding: 50px;
+    margin-bottom: 10px;
+    font-size: 40px;
 }
