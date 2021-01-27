@@ -47,3 +47,15 @@ body{
 .modifiers{
     margin: 10px 0px;
 }
+
+.clicker img{
+    transition: all .2 ease-in-out;
+}
+
+.clicker img:hover{
+    transform: scale(1.10);
+}
+
+.clicker img:active{
+    transform: scale(0.99);
+}

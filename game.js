@@ -8,6 +8,12 @@ let paperAdd= 0;
 let classmate = 0;
 let classmateAdd = 0;
 
+//Variables for modifiers
+let clickMod = 1;
+let penMod = 1;
+let paperMod = 1;
+let classmatMod = 1;
+
 //Variables for click and total ASP
 let clickNumber = 1;
 let number = 0;
@@ -22,10 +28,14 @@ $(document).ready (function(){
 
     //Add assignemnt done when clicking
     $("#click").click(function(){
-        assignmentAdd(clickNumber);
+        assignmentAdd(clickNumber, clickMod);
     })
 
-    //Event listener for buying modifiers
+
+
+    //Event listener for buying modifiers--------------------------------------------
+
+    //Modfier upgrade 1 - Adds extra 5 per click
     $("#mod1").click(function(){
         var mod1Cost = 100;
         if (assignment >= mod1Cost){
@@ -34,7 +44,18 @@ $(document).ready (function(){
         }
     })
 
-    //Event listener for buying upgrades
+    //Modfier upgrade 2 - Adds 2x APS to the pen
+    $("#mod2").click(function(){
+        var mod2Cost = 100;
+        if (assignment >= mod2Cost){
+            penMod = penMod * 2;
+            $("#mod2").css("display", "none");
+        }
+    })
+
+
+
+    //Event listener for buying upgrades----------------------------------------------
     $("#pensCost").click(function(){
        buyPens();
     })
@@ -51,12 +72,11 @@ $(document).ready (function(){
     //Functions-----------------------------------------------------------------------
 
     //Function to add to assignemnts
-    function assignmentAdd(number){
-        assignment += number;
+    function assignmentAdd(number, modifiers){
+        assignment = assignment + number * modifiers;
         let displayAssignment = assignment.toString().split(".");
         $("#asgn").text(`${displayAssignment[0]} assignment finished`)
     }
-
 
     function buyPens(){
         var pensCost = Math.floor(10 * Math.pow(1.1,pens));
@@ -72,7 +92,7 @@ $(document).ready (function(){
     }
 
     function buyPaper(){
-        var paperCost = Math.floor(100 * Math.pow(1.3, paper));
+        var paperCost = Math.floor(100 * Math.pow(1.2, paper));
         if (assignment >= paperCost){
             paper += 1;
             assignment -= paperCost;
@@ -80,12 +100,12 @@ $(document).ready (function(){
             $("#paper").text(`${paper} paper`)
             paperAdd = paper * 2;
         }
-        var nextPaperCost = Math.floor(100 * Math.pow(1.3, paper)); 
+        var nextPaperCost = Math.floor(100 * Math.pow(1.2, paper)); 
         $("#paperCost").text(`${nextPaperCost} assignments`)
     }
 
     function buyClassmate(){
-        var classmateCost = Math.floor(1000 * Math.pow(1.5, classmate));
+        var classmateCost = Math.floor(1000 * Math.pow(1.3, classmate));
         if (assignment >= classmateCost){
             classmate += 1;
             assignment -= classmateCost;
@@ -93,15 +113,20 @@ $(document).ready (function(){
             $("#classmate").text(`${classmate} classmate`)
             classmateAdd = classmate * 5;
         }
-        var nextClassmateCost = Math.floor(1000 * Math.pow(1.5, classmate)); 
+        var nextClassmateCost = Math.floor(1000 * Math.pow(1.3, classmate)); 
         $("#classmateCost").text(`${nextClassmateCost} assignments`)
     }
 
+
+
+    //Interval---------------------------------------------------------------------
+
+    //This is to make sure it is always updating the current score
     window.setInterval(function(){
         let displayAssignment = assignment.toString().split(".");
         $("#asgn").text(`${displayAssignment[0 ]} assignment finished`)
 
-        totalAPS = pensAdd + paperAdd + classmateAdd;
+        totalAPS = pensAdd * penMod + paperAdd * paperMod + classmateAdd * classmatMod;
         if (Number.isInteger(totalAPS)){
             $("#ips").text(`${totalAPS} assignment per second`)
         } else {
@@ -110,11 +135,12 @@ $(document).ready (function(){
         }
     })
 
+    //Used to update every second
     window.setInterval(function(){
         console.log(assignment)
-        assignmentAdd(pensAdd);
-        assignmentAdd(paperAdd);
-        assignmentAdd(classmateAdd);
+        assignmentAdd(pensAdd, penMod);
+        assignmentAdd(paperAdd, paperMod);
+        assignmentAdd(classmateAdd, penMod);
     }, 1000)
 })
 
