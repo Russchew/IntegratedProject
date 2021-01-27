@@ -1,9 +1,14 @@
 let assignment = 0;
+
+//Variable for upgrades
 let pens = 0;
+let pensAdd = 0;
 let paper = 0;
 let paperAdd= 0;
 let classmate = 0;
 let classmateAdd = 0;
+
+//Variables for click and total ASP
 let clickNumber = 1;
 let number = 0;
 let totalAPS = 0;
@@ -18,6 +23,15 @@ $(document).ready (function(){
     //Add assignemnt done when clicking
     $("#click").click(function(){
         assignmentAdd(clickNumber);
+    })
+
+    //Event listener for buying modifiers
+    $("#mod1").click(function(){
+        var mod1Cost = 100;
+        if (assignment >= mod1Cost){
+            clickNumber += 5;
+            $("#mod1").css("display", "none");
+        }
     })
 
     //Event listener for buying upgrades
@@ -39,11 +53,11 @@ $(document).ready (function(){
     //Function to add to assignemnts
     function assignmentAdd(number){
         assignment += number;
-        $("#asgn").text(`${assignment} assignment finished`)
+        let displayAssignment = assignment.toString().split(".");
+        $("#asgn").text(`${displayAssignment[0]} assignment finished`)
     }
 
 
-    //Each pens adds to total nuber of assignment per click
     function buyPens(){
         var pensCost = Math.floor(10 * Math.pow(1.1,pens));
         if (assignment >= pensCost){
@@ -51,15 +65,12 @@ $(document).ready (function(){
             assignment -= pensCost;
             $("#asgn").text(`${assignment} assignment finished`)
             $("#pens").text(`${pens} pens`)
-            pensAdd = pens * 1;
-            totalAPS += pensAdd;
+            pensAdd = pens * 0.2;
         }
         var nextPenCost = Math.floor(10 * Math.pow(1.1,pens)); 
         $("#pensCost") .text(`${nextPenCost} assignments`)
     }
 
-
-    //Each paper adds 5 assigment per interval
     function buyPaper(){
         var paperCost = Math.floor(100 * Math.pow(1.3, paper));
         if (assignment >= paperCost){
@@ -67,34 +78,40 @@ $(document).ready (function(){
             assignment -= paperCost;
             $("#asgn").text(`${assignment} assignment finished`)
             $("#paper").text(`${paper} paper`)
-            paperAdd = paper * 5;
-            totalAPS += paperAdd;
+            paperAdd = paper * 2;
         }
         var nextPaperCost = Math.floor(100 * Math.pow(1.3, paper)); 
         $("#paperCost").text(`${nextPaperCost} assignments`)
     }
 
-
     function buyClassmate(){
-        var classmateCost = Math.floor(2500 * Math.pow(1.5, classmate));
+        var classmateCost = Math.floor(1000 * Math.pow(1.5, classmate));
         if (assignment >= classmateCost){
             classmate += 1;
             assignment -= classmateCost;
             $("#asgn").text(`${assignment} assignment finished`)
             $("#classmate").text(`${classmate} classmate`)
-            classmateAdd = classmate * 15;
-            totalAPS += classmateAdd;
+            classmateAdd = classmate * 5;
         }
-        var nextClassmateCost = Math.floor(2500 * Math.pow(1.5, classmate)); 
+        var nextClassmateCost = Math.floor(1000 * Math.pow(1.5, classmate)); 
         $("#classmateCost").text(`${nextClassmateCost} assignments`)
     }
 
     window.setInterval(function(){
-        $("#asgn").text(`${assignment} assignment finished`)
-        $("#ips").text(`${totalAPS} assignment per second`)
+        let displayAssignment = assignment.toString().split(".");
+        $("#asgn").text(`${displayAssignment[0 ]} assignment finished`)
+
+        totalAPS = pensAdd + paperAdd + classmateAdd;
+        if (Number.isInteger(totalAPS)){
+            $("#ips").text(`${totalAPS} assignment per second`)
+        } else {
+            displayTotalAPS = totalAPS.toFixed(2);
+            $("#ips").text(`${displayTotalAPS} assignment per second`)
+        }
     })
 
     window.setInterval(function(){
+        console.log(assignment)
         assignmentAdd(pensAdd);
         assignmentAdd(paperAdd);
         assignmentAdd(classmateAdd);
