@@ -19,6 +19,11 @@ let clickNumber = 1;
 let number = 0;
 let totalAPS = 0;
 
+upgradesItem = {
+    upgrades: ["pens", "paper", "classmate"],
+    price: [10, 100, 500],
+}
+
 function debugAdd(x){
     assignment = assignment + x;
     return assignment
@@ -56,15 +61,15 @@ $(document).ready (function(){
 
 
     //Event listener for buying upgrades----------------------------------------------
-    $("#pensCost").click(function(){
+    $("#pens").click(function(){
        buyPens();
     })
 
-    $("#paperCost").click(function(){
+    $("#paper").click(function(){
         buyPaper();
     })
 
-    $("#classmateCost").click(function(){
+    $("#classmate").click(function(){
         buyClassmate();
     })
 
@@ -84,11 +89,11 @@ $(document).ready (function(){
             pens += 1;
             assignment -= pensCost;
             $("#asgn").text(`${assignment} assignment finished`)
-            $("#pens").text(`${pens} pens`)
+            $("#penDisplay").text(`${pens}`)
             pensAdd = pens * 0.2;
         }
-        var nextPenCost = Math.floor(10 * Math.pow(1.1,pens)); 
-        $("#pensCost") .text(`${nextPenCost} assignments`)
+        var pensCost = Math.floor(10 * Math.pow(1.1,pens)); 
+        $("#pensCost") .text(`${pensCost} assignments`)
     }
 
     function buyPaper(){
@@ -97,7 +102,7 @@ $(document).ready (function(){
             paper += 1;
             assignment -= paperCost;
             $("#asgn").text(`${assignment} assignment finished`)
-            $("#paper").text(`${paper} paper`)
+            $("#paperDisplay").text(`${paper}`)
             paperAdd = paper * 2;
         }
         var nextPaperCost = Math.floor(100 * Math.pow(1.2, paper)); 
@@ -110,7 +115,7 @@ $(document).ready (function(){
             classmate += 1;
             assignment -= classmateCost;
             $("#asgn").text(`${assignment} assignment finished`)
-            $("#classmate").text(`${classmate} classmate`)
+            $("#classmateDisplay").text(`${classmate}`)
             classmateAdd = classmate * 5;
         }
         var nextClassmateCost = Math.floor(1000 * Math.pow(1.3, classmate)); 
@@ -124,7 +129,7 @@ $(document).ready (function(){
     //This is to make sure it is always updating the current score
     window.setInterval(function(){
         let displayAssignment = assignment.toString().split(".");
-        $("#asgn").text(`${displayAssignment[0 ]} assignment finished`)
+        $("#asgn").text(`${displayAssignment[0]} assignment finished`)
 
         totalAPS = pensAdd * penMod + paperAdd * paperMod + classmateAdd * classmatMod;
         if (Number.isInteger(totalAPS)){

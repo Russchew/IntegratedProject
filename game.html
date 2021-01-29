@@ -54,15 +54,49 @@
                 <button id="mod3">3</button>
                 <button id="mod4">4</button>
             </div>
-            <span class="upgradeItems">Pens: <span id="pens">0 pens</span> <button id="pensCost">10 assignments</button></span>
-            <span class="upgradeItems">Paper: <span id="paper">0 paper</span> <button id="paperCost">100 assignments</button></span> 
-            <span class="upgradeItems">Classmates: <span id="classmate">0 classmate</span> <button id="classmateCost">1000 assignments</button></span> 
+            <div id="pens">
+                <table class="upgradeItems">
+                    <tr>
+                        <td class="upgradeImage"><img src="" alt="Pens"></td>
+                        <td>
+                            <p>Pens</p>
+                            <p id="pensCost">10 assignments</p>
+                        </td>
+                        <td class="numberDisplay" id="penDisplay">0</td>
+                    </tr>
+                </table>
+                <!-- <span>Pens: <span id="pens">0 pens</span></span> -->
+            </div>
+            
+            <div id="paper">
+                <table class="upgradeItems">
+                    <tr>
+                        <td class="upgradeImage"><img src="" alt="Paper"></td>
+                        <td>
+                            <p>Paper</p>
+                            <p id="paperCost">100 assignments</p>
+                        </td>
+                        <td class="numberDisplay" id="paperDisplay">0</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="classmate">
+                <table class="upgradeItems">
+                    <tr>
+                        <td class="upgradeImage"><img src="" alt="Classmate"></td>
+                        <td>
+                            <p>Classmate</p>
+                            <p id="classmateCost">1000 assignments</p>
+                        </td>
+                        <td class="numberDisplay" id="classmateDisplay">0</td>
+                    </tr>
+                </table>
+            </div>
         </div>
 
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->
         <script src="game.js"></script>
     </body>
 </html>

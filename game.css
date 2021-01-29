@@ -28,13 +28,45 @@ body{
     width: 50%;
     display: flex;
     flex-direction: column;
+    user-select: none;
 }
 
 .upgradeItems{
     background-color: beige;
-    padding: 50px;
-    margin: 5px 0px;
-    font-size: 40px;
+    transition: all .1s ease-in-out;
+    width: 100%;
+    padding: 10px 20px;
+    margin: 10px 0px;
+    font-size: 30px;
+}
+
+.upgradeItems:hover{
+    background-color: #c8c8b7;
+    transition: all .1s ease-in-out;
+}
+
+.upgradeItems .upgradeImage{
+    width: 15%;
+}
+
+.upgradeItems .upgradeImage img{
+    width: 100%;
+}
+
+.upgradeItems p{
+    margin: 0;
+    margin-left:  20px;
+    width: 60%;
+}
+
+.upgradeItems p:first-of-type{
+    margin-bottom: 10px;
+    font-size: 50px;
+}
+
+.numberDisplay{
+    font-size: 70px;
+    width: 13%;
 }
 
 .modifiers button{
@@ -49,7 +81,7 @@ body{
 }
 
 .clicker img{
-    transition: all .2 ease-in-out;
+    transition: all .1s ease-in-out;
 }
 
 .clicker img:hover{
