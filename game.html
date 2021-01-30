@@ -39,21 +39,23 @@
 
             
         <div class="clicker">
-            <h1 id="asgn">0  assignment finished</h1>
-            <p id="ips">0 assignment per second</p>
-            <img src="https://art.pixilart.com/8b694d265d632ab.png" alt="" width="50%" id="click">
+            <h1 id="asgn">0  Assignment Finished</h1>
+            <p id="aps">0 assignment per second</p>
+            <img src="https://art.pixilart.com/8b694d265d632ab.png" alt="" width="50%" id="click" onclick="game.clickAdd(game.clickAmount)">
             <!-- <button id="click"><img src="https://art.pixilart.com/8b694d265d632ab.png" alt="" width="20%"></button> -->
             <!-- <button id="click">Do it</button> -->
         </div>
 
-        <div class="upgrades">
+        <div class="upgrades" id="upgradesContainer">
             <h1>Upgrades</h1>
-            <div class="modifiers">
+            <!-- <div class="modifiers">
                 <button id="mod1">1</button>
                 <button id="mod2">2</button>
                 <button id="mod3">3</button>
                 <button id="mod4">4</button>
-            </div>
+            </div> -->
+
+
             <div id="pens">
                 <table class="upgradeItems">
                     <tr>
@@ -65,7 +67,6 @@
                         <td class="numberDisplay" id="penDisplay">0</td>
                     </tr>
                 </table>
-                <!-- <span>Pens: <span id="pens">0 pens</span></span> -->
             </div>
             
             <div id="paper">
