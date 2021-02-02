@@ -29,6 +29,7 @@ body{
     display: flex;
     flex-direction: column;
     user-select: none;
+    overflow: auto;
 }
 
 .upgradeItems{
@@ -69,15 +70,15 @@ body{
     width: 13%;
 }
 
-.modifiers button{
-    background-color: beige;
-    padding: 10px;
-    border: 0px;
-    font-size: 30px;
+#modifiersContainer{
+    margin: 20px 0px;
 }
 
 .modifiers{
-    margin: 10px 0px;
+    margin: 0px 5px;
+    background-color: beige;
+    padding: 10px;
+    font-size: 30px;
 }
 
 .clicker img{

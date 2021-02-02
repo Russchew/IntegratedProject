@@ -25,21 +25,51 @@ let game = {
 }
 
 let upgradesItem = {
-    name: ["pens", "paper", "classmate"],
-    price: [10, 100, 500],
-    owned: [0, 0 ,0],
-    earning: [0.2, 5, 15],
-    scaling: [1.1, 1.2, 1.3],
+    name: ["Pens", "Paper", "Classmate", "Laptop", "Teacher", "Robot"],
+    img: ["", "", "", "", ""],
+    basePrice: [10, 100, 500, 1000, 10000, 1000000],
+    price: [10, 100, 500, 1000, 10000, 1000000],
+    owned: [0, 0 ,0, 0, 0, 0],
+    earning: [0.2, 1, 5, 10, 100, 1000],
+    scaling: [1.07, 1.07, 1.07, 1.07, 1.07, 1.07],
     buy: function(index){
         if(game.assignment >= this.price[index]){
             game.assignment -= this.price[index];
             this.owned[index]++;
-            this.price[index] = Math.floor(this.price[index] * Math.pow(this.scaling[index],this.owned[index]));
+            this.price[index] = Math.floor(this.basePrice[index] * Math.pow(this.scaling[index],this.owned[index]));
             display.updateAssignment();
             display.updateShop();
+            display.updateModifers();
         }
     }
 }
+
+let upgradeModifiers = {
+    name: ["Increased Ink Capacity", ],
+    description: ["Pens are twice as effecient"],
+    type: ["building"],
+    img: [""],
+    cost: [100],
+    index: [0],
+    requiredAmount: [10],
+    multiplier: [2],
+    purchased: [false],
+    buy: function(index){
+        if(!this.purchased[index] && game.assignment >= this.cost[index]){
+            if(this.type[index] == "building" && upgradesItem.owned[this.index[index]] >= this.requiredAmount[index]){
+                game.assignment -= this.cost[index];
+                upgradesItem.earning[this.index[index]] *= this.multiplier[index];
+                this.purchased[index] = true;
+                display.updateShop();
+                display.updateAssignment();
+                display.updateModifers();
+            } else if (this.type[index] == "click" && game.totalClicks >= this.requiredAmount[index]) {
+
+            }
+        }
+    }
+}
+
 
 let display = {
     updateAssignment: function(){
@@ -55,7 +85,6 @@ let display = {
         APSDisplay = game.assignmentPerSecond();
         if (Number.isInteger(APSDisplay)){
             document.getElementById("aps").innerHTML = APSDisplay + " assignment per second";
-            console.log("Yay")
         } else {
             APS = APSDisplay
             APS = APS.toFixed(2);
@@ -67,12 +96,12 @@ let display = {
     },
 
     updateShop: function(){
-        document.getElementById("upgradesContainer").innerHTML = "";
+        document.getElementById("upgradesContainer").innerHTML = ``;
         for(i = 0; i < upgradesItem.name.length; i++){
             document.getElementById("upgradesContainer").innerHTML += `
             <table class="upgradeItems" onclick="upgradesItem.buy(${i})">
                 <tr>
-                    <td class="upgradeImage"><img src="" alt="${upgradesItem.name[i]}"></td>
+                    <td class="upgradeImage"><img src=${upgradesItem.img[i]} alt="${upgradesItem.name[i]}"></td>
                     <td>
                         <p>${upgradesItem.name[i]}</p>
                         <p>${upgradesItem.price[i]}</p>
@@ -82,31 +111,79 @@ let display = {
             </table>`
         }
     },
+
+    updateModifers: function(){
+        document.getElementById("modifiersContainer").innerHTML = "";
+        for (i = 0; i < upgradeModifiers.name.length; i++){
+            if (!upgradeModifiers.purchased[i]){
+                if (upgradeModifiers.type[i] == "building" && upgradesItem.owned[upgradeModifiers.index[i]] >= upgradeModifiers.requiredAmount[i]) {
+                    document.getElementById("modifiersContainer").innerHTML += `<span class="modifiers" title="${upgradeModifiers.name[i]} &#10; ${upgradeModifiers.description [i]} &#10; (${upgradeModifiers.cost[i]} Assignemnts)" onclick="upgradeModifiers.buy(${i});">1</span>`; 
+                    //
+                } else if (upgradeModifiers.type[i] == "click" && game.totalClicks >= upgradeModifiers.requiredAmount[i]) {
+
+                }
+            }
+        }
+    }
+}
+
+function saveGame(){
+    var gamesave = {
+        assignemnt: game.assignment,
+        totalAssignment: game.totalAssignment,
+        totalAssignmentEarned: game.totalAssignmentEarned,
+        totalClicks: game.totalClicks,
+        clickAmount: game.clickAmount,
+        ownedItems: upgradesItem.owned,
+        itemEarning: upgradesItem.earning,
+        itemPrice: upgradesItem.price,
+        modifiersPurchase: upgradeModifiers.purchased,
+    }
+    localStorage.setItem("gameSave", JSON.stringify(gamesave))
+}
+
+function loadGame(){
+    var savedGame = JSON.parse(localStorage.getItem("gameSave"));
+    if (localStorage.getItem("gameSave") !== null) {
+
+    }
 }
 
 window.onload = function() {
     display.updateAssignment();
     display.updateShop();
+    display.updateModifers();
 };
 
 window.setInterval(function(){
     game.assignment += game.assignmentPerSecond();
-    // game.assignemnt = game.assignment.toString().split(".");
-
-    // if (Number.isInteger(game.assignemnt)){
-    //     game.assignment = game.assignemnt[0];
-    // } else {
-    //     game.assignemnt = game.assignemnt.toFixed(2);
-    // }
-
     game.totalAssignmentEarned += game.assignmentPerSecond();
     display.updateAssignment();
+    display.updateModifers();
 }, 1000);
+
+window.setInterval(function(){
+    saveGame();
+}, 5000);
+
+window.setInterval(function(){
+    display.updateAssignment();
+    display.updateModifers();
+}, 10000);
 
 function debugAdd(x){
     game.assignment = game.assignment + x;
     return game.assignment
 }
+
+
+
+
+
+
+
+
+// Old code used before up clean up and future proofing
 
 // window.setInterval(function(){
 //     let displayAssignment = assignment.toString().split(".");
@@ -120,10 +197,6 @@ function debugAdd(x){
 //         $("#ips").text(`${displayTotalAPS} assignment per second`)
 //     }
 // })
-
-
-
-// Old code used before up clean up and future proofing
 
 // let assignment = 0;
 
