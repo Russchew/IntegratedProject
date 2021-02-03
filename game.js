@@ -30,7 +30,7 @@ let upgradesItem = {
     basePrice: [10, 100, 500, 1000, 10000, 1000000],
     price: [10, 100, 500, 1000, 10000, 1000000],
     owned: [0, 0 ,0, 0, 0, 0],
-    earning: [0.2, 1, 5, 10, 100, 1000],
+    earning: [0.4, 1.5, 5, 10, 100, 1000],
     scaling: [1.07, 1.07, 1.07, 1.07, 1.07, 1.07],
     buy: function(index){
         if(game.assignment >= this.price[index]){
@@ -45,15 +45,77 @@ let upgradesItem = {
 }
 
 let upgradeModifiers = {
-    name: ["Increased Ink Capacity", ],
-    description: ["Pens are twice as effecient"],
-    type: ["building"],
-    img: [""],
-    cost: [100],
-    index: [0],
-    requiredAmount: [10],
-    multiplier: [2],
-    purchased: [false],
+    name: [
+        //Upgrades for Clicks
+        "You Write Faster", "Two Hands Writing",
+        
+        //Upgrades for Pen
+        "Increased Ink Capacity", "Better writing", 
+        
+        //Upgrade for paper
+        "Bigger Paper", "Even Bigger Paper",
+    ],
+    description: [
+        //Upgrades for Clicks
+        "Clicking is twice as efficent", "Clicking is twice as efficent",
+
+        //Upgrades for Pen
+        "Pens are twice as effecient", "Pens are twice as effecient", 
+
+        //Upgrade for paper
+        "Paper is twice as efficent", "Paper is twice as efficent",
+    ],
+    type: ["click", "click", "building", "building",  "building", "building",],
+    img: [
+        //Upgrades for Clicks
+        "", "",
+
+        //Upgrades for Pen
+        "", "",
+        //Upgrade for paper
+        "", "",
+    ],
+    cost: [
+        //Upgrades for Clicks
+        50, 500,
+
+        //Upgrades for Pen
+        100, 500, 
+
+        //Upgrade for paper
+        1000, 2500,
+    ],
+    index: [
+        //upgrades for Clicks
+        0, 0,
+
+        //Upgrades for Pen
+        0, 0,
+
+        //Upgrade for paper
+        1, 1,
+    ],
+    requiredAmount: [
+        //upgrades for Clicks
+        5, 150,
+
+        //Upgrades for Pen
+        10, 30,
+
+        //Upgrade for paper
+        10, 30,
+    ],
+    multiplier: [
+        //upgrades for Clicks
+        2, 2,
+
+        //Upgrades for Pen
+        2, 2,
+
+        //Upgrade for paper
+        2, 2,
+    ],
+    purchased: [false, false, false, false, false, false],
     buy: function(index){
         if(!this.purchased[index] && game.assignment >= this.cost[index]){
             if(this.type[index] == "building" && upgradesItem.owned[this.index[index]] >= this.requiredAmount[index]){
@@ -64,7 +126,12 @@ let upgradeModifiers = {
                 display.updateAssignment();
                 display.updateModifers();
             } else if (this.type[index] == "click" && game.totalClicks >= this.requiredAmount[index]) {
-
+                game.assignment -= this.cost[index];
+                game.clickAmount *= this.multiplier[index];
+                this.purchased[index] = true;
+                display.updateShop();
+                display.updateAssignment();
+                display.updateModifers();
             }
         }
     }
@@ -118,9 +185,8 @@ let display = {
             if (!upgradeModifiers.purchased[i]){
                 if (upgradeModifiers.type[i] == "building" && upgradesItem.owned[upgradeModifiers.index[i]] >= upgradeModifiers.requiredAmount[i]) {
                     document.getElementById("modifiersContainer").innerHTML += `<span class="modifiers" title="${upgradeModifiers.name[i]} &#10; ${upgradeModifiers.description [i]} &#10; (${upgradeModifiers.cost[i]} Assignemnts)" onclick="upgradeModifiers.buy(${i});">1</span>`; 
-                    //
                 } else if (upgradeModifiers.type[i] == "click" && game.totalClicks >= upgradeModifiers.requiredAmount[i]) {
-
+                    document.getElementById("modifiersContainer").innerHTML += `<span class="modifiers" title="${upgradeModifiers.name[i]} &#10; ${upgradeModifiers.description [i]} &#10; (${upgradeModifiers.cost[i]} Assignemnts)" onclick="upgradeModifiers.buy(${i});">1</span>`; 
                 }
             }
         }
@@ -129,7 +195,7 @@ let display = {
 
 function saveGame(){
     var gamesave = {
-        assignemnt: game.assignment,
+        assignment: game.assignment,
         totalAssignment: game.totalAssignment,
         totalAssignmentEarned: game.totalAssignmentEarned,
         totalClicks: game.totalClicks,
@@ -145,11 +211,44 @@ function saveGame(){
 function loadGame(){
     var savedGame = JSON.parse(localStorage.getItem("gameSave"));
     if (localStorage.getItem("gameSave") !== null) {
+        if(typeof savedGame.assignment !== "undefined") {game.assignment = savedGame.assignment;}
+        if(typeof savedGame.totalAssignment !== "undefined") {game.totalAssignment = savedGame.totalAssignment;}
+        if(typeof savedGame.totalAssignmentEarned !== "undefined") {game.totalAssignmentEarned = savedGame.totalAssignmentEarned;}
+        if(typeof savedGame.totalClicks !== "undefined") {game.totalClicks = savedGame.totalClicks;}
+        if(typeof savedGame.clickAmount !== "undefined") {game.clickAmount = savedGame.clickAmount;}
+        if(typeof savedGame.ownedItems !== "undefined") {
+            for (i = 0; i < savedGame.ownedItems.length; i++){
+                upgradesItem.owned[i] = savedGame.ownedItems[i];
+            }
+        };
+        if(typeof savedGame.itemEarning !== "undefined") {
+            for (i = 0; i < savedGame.itemEarning.length; i++){
+                upgradesItem.earning[i] = savedGame.itemEarning[i];
+            }
+        };
+        if(typeof savedGame.itemPrice !== "undefined") {
+            for (i = 0; i < savedGame.itemEarning.length; i++){
+                upgradesItem.price[i] = savedGame.itemPrice[i];
+            }
+        };
+        if(typeof savedGame.modifiersPurchase !== "undefined") {
+            for (i = 0; i < savedGame.modifiersPurchase.length; i++){
+                upgradeModifiers.purchased[i] = savedGame.modifiersPurchase[i];
+            }
+        };
+    }
+}
 
+function reset(){
+    if(confirm("This will wipe out the game and start afresh. Are you sure.")){
+        var gameSave= {};
+        localStorage.setItem("gameSave", JSON.stringify(gameSave));
+        location.reload();
     }
 }
 
 window.onload = function() {
+    loadGame();
     display.updateAssignment();
     display.updateShop();
     display.updateModifers();
