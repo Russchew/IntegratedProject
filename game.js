@@ -26,7 +26,7 @@ let game = {
 
 let upgradesItem = {
     name: ["Pens", "Paper", "Classmate", "Laptop", "Teacher", "Robot"],
-    img: ["", "", "", "", ""],
+    img: ["placeholder.png", "placeholder.png", "placeholder.png", "placeholder.png", "placeholder.png", "placeholder.png"],
     basePrice: [10, 100, 500, 1000, 10000, 1000000],
     price: [10, 100, 500, 1000, 10000, 1000000],
     owned: [0, 0 ,0, 0, 0, 0],
@@ -68,12 +68,13 @@ let upgradeModifiers = {
     type: ["click", "click", "building", "building",  "building", "building",],
     img: [
         //Upgrades for Clicks
-        "", "",
+        "placeholder.png", "placeholder.png",
 
         //Upgrades for Pen
-        "", "",
+        "placeholder.png", "placeholder.png",
+
         //Upgrade for paper
-        "", "",
+        "placeholder.png", "placeholder.png",
     ],
     cost: [
         //Upgrades for Clicks
@@ -184,9 +185,9 @@ let display = {
         for (i = 0; i < upgradeModifiers.name.length; i++){
             if (!upgradeModifiers.purchased[i]){
                 if (upgradeModifiers.type[i] == "building" && upgradesItem.owned[upgradeModifiers.index[i]] >= upgradeModifiers.requiredAmount[i]) {
-                    document.getElementById("modifiersContainer").innerHTML += `<span class="modifiers" title="${upgradeModifiers.name[i]} &#10; ${upgradeModifiers.description [i]} &#10; (${upgradeModifiers.cost[i]} Assignemnts)" onclick="upgradeModifiers.buy(${i});">1</span>`; 
+                    document.getElementById("modifiersContainer").innerHTML += `<img src="${upgradeModifiers.img[i]}" alt="MOD" class="modifiers" title="${upgradeModifiers.name[i]} &#10; ${upgradeModifiers.description [i]} &#10; (${upgradeModifiers.cost[i]} Assignemnts)" onclick="upgradeModifiers.buy(${i});"></img>`; 
                 } else if (upgradeModifiers.type[i] == "click" && game.totalClicks >= upgradeModifiers.requiredAmount[i]) {
-                    document.getElementById("modifiersContainer").innerHTML += `<span class="modifiers" title="${upgradeModifiers.name[i]} &#10; ${upgradeModifiers.description [i]} &#10; (${upgradeModifiers.cost[i]} Assignemnts)" onclick="upgradeModifiers.buy(${i});">1</span>`; 
+                    document.getElementById("modifiersContainer").innerHTML += `<img class="modifiers" src="${upgradeModifiers.img[i]}" alt="MOD" title="${upgradeModifiers.name[i]} &#10; ${upgradeModifiers.description [i]} &#10; (${upgradeModifiers.cost[i]} Assignemnts)" onclick="upgradeModifiers.buy(${i});"></img>`; 
                 }
             }
         }
