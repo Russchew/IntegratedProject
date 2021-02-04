@@ -32,6 +32,99 @@ nav ul li a{
 nav ul li a:hover{
     color: yellow;
 }
+.banner{
+    height: 400px;
+    width: 100%;
+    background-color: chocolate;
+}
+.home_section{
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    background-color: cornflowerblue;
+}
+.home_teacher{
+    background-color: white;
+    padding: 20px;
+    flex: 1;
+    margin: 10px;
+}
+.home_message{
+    background-color: white;
+    padding: 20px;
+    flex: 1;
+    margin: 10px;
+}
+.home_experience{
+    width: 100%;
+    background-color:yellowgreen;
+    padding: 20px;
+}
+.home_experience_inner_text{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: tomato;
+
+    color: white;
+}
+.home_experience_inner_images{
+    display: flex;
+    width: 100%;
+}
+.home_experience_inner_inside_image_side{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    flex: 1;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.home_experience_inner_inside_image_middle{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    flex: 1;
+    margin: 20px;
+    width: 100%;
+}
+.sitemap{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.sitemap_header_side{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.sitemap_header_title{
+    margin-bottom: 20px;
+}
+.sitemap_header_title a{
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.sitemap_content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.sitemap_content a{
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+    text-decoration: none;
+}
+.sitemap_header_title:hover{
+    text-decoration: underline;
+}
+
 footer{
     display: flex;
     margin: 0px;
