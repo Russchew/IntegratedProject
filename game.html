@@ -37,7 +37,15 @@
             </div>
         </div> -->
 
-            
+        <div class="popup">
+            <h1>Transcending</h1>
+            <p>This will cost you to lose all current progress and restart with added benefits</p>
+            <p id="transcendAmount">You will gain ###</p>
+            <button onclick="transcend.reset()">Yes</button>
+            <button id="transcendNo">No</button>
+            <p>Each transend point will gain you a 1% multiplier buff to total APS</p>
+        </div>
+        
         <div class="clicker">
             <div>
                 <h1 id="asgn">0  Assignment Finished</h1>
@@ -47,7 +55,7 @@
             <div class="options">
                 <div>STATS</div>
                 <div>OPTIONS</div>
-                <div>TRANSCEND</div>
+                <div id="transcend">TRANSCEND</div>
                 <div onclick="reset()">RESTART</div>
             </div>
             <!-- <div class="options">

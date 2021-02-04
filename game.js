@@ -11,14 +11,19 @@ let game = {
     clickAdd: function(amount){
         this.assignment += amount;
         this.totalAssignment += amount;
+        this.totalAssignmentEarned += 1;
         this.totalClicks += 1;
         display.updateAssignment();
+        display.updateModifers();
     },
 
     assignmentPerSecond: function(){
         var APS = 0;
         for(i = 0; i < upgradesItem.name.length; i++){
             APS += upgradesItem.earning[i] * upgradesItem.owned[i];
+        };
+        if(transcend.totalAmountGained !== 0){
+            APS += APS * (transcend.totalAmountGained/100);
         }
         return APS
     },
@@ -138,7 +143,6 @@ let upgradeModifiers = {
     }
 }
 
-
 let display = {
     updateAssignment: function(){
         if (Number.isInteger(game.assignment)){
@@ -194,6 +198,24 @@ let display = {
     }
 }
 
+let transcend = {
+    requiredAmount: 1000000,
+    amount: 0,
+    totalAmountGained: 0,
+    levelup: function(){
+        if (game.assignment >= this.requiredAmount){
+            this.amount += 1;
+            this.requiredAmount = this.requiredAmount + (this.requiredAmount * 0.1);
+        }
+    },
+    reset: function(){
+        this.totalAmountGained = this.amount;
+        var gameSave= {totalAmountGained: this.totalAmountGained,};
+        localStorage.setItem("gameSave", JSON.stringify(gameSave));
+        location.reload();
+    }
+}
+
 function saveGame(){
     var gamesave = {
         assignment: game.assignment,
@@ -205,6 +227,8 @@ function saveGame(){
         itemEarning: upgradesItem.earning,
         itemPrice: upgradesItem.price,
         modifiersPurchase: upgradeModifiers.purchased,
+        transcendRequired: transcend.requiredAmount,
+        transcendAmount: transcend.amount
     }
     localStorage.setItem("gameSave", JSON.stringify(gamesave))
 }
@@ -217,6 +241,9 @@ function loadGame(){
         if(typeof savedGame.totalAssignmentEarned !== "undefined") {game.totalAssignmentEarned = savedGame.totalAssignmentEarned;}
         if(typeof savedGame.totalClicks !== "undefined") {game.totalClicks = savedGame.totalClicks;}
         if(typeof savedGame.clickAmount !== "undefined") {game.clickAmount = savedGame.clickAmount;}
+        if(typeof savedGame.transcendRequired !== "undefined") {transcend.requiredAmount = savedGame.transcendRequired;}
+        if(typeof savedGame.transcendAmount !== "undefined") {transcend.amount = savedGame.transcendAmount;}
+        if(typeof savedGame.totalAmountGained !== "undefined") {transcend.totalAmountGained = savedGame.totalAmountGained;}
         if(typeof savedGame.ownedItems !== "undefined") {
             for (i = 0; i < savedGame.ownedItems.length; i++){
                 upgradesItem.owned[i] = savedGame.ownedItems[i];
@@ -248,12 +275,20 @@ function reset(){
     }
 }
 
+// document.getElementById("transcend").addEventListener("click", function(){
+//     document.getElementsByClassName("popup").style.display = "block"
+// }, false)
+
 window.onload = function() {
     loadGame();
     display.updateAssignment();
     display.updateShop();
     display.updateModifers();
 };
+
+window.setInterval(function(){
+    transcend.levelup();
+});
 
 window.setInterval(function(){
     game.assignment += game.assignmentPerSecond();
@@ -276,7 +311,16 @@ function debugAdd(x){
     return game.assignment
 }
 
+$(document).ready(function(){
+    $("#transcend").click(function(){
+        $(".popup").css("display", "block");
+        document.getElementById("transcendAmount").innerHTML = `You will gain ${transcend.amount} transcend point`
+    });
 
+    $("#transcendNo").click(function(){
+        $(".popup").css("display", "none");
+    });
+});
 
 
 
