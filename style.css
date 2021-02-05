@@ -1,3 +1,4 @@
+/* Base Setup */
 *{
     box-sizing: border-box;
 }
@@ -8,30 +9,37 @@ body{
     padding: 0px;
     margin: 0px;
 }
-nav{
+/* Navigation bar */
+.icon {
+    display: none;
+
+}
+
+.navresponsive{
     background-color: aqua;
 }
 .logo{
     display: flex;
     justify-content: center;
 }
-nav ul{
+.navbar{
     display: flex;
-    background-color: black;
+    background-color: grey;
     padding: 20px;
     margin: 0px;
     justify-content: center;
     list-style-type: none;
 }
-nav ul li a{
+.navbar li a{
     color: white;
+    margin: 20px;
     text-decoration: none;
-    padding: 20px;
     font-family: sans-serif;
 }
-nav ul li a:hover{
+.navbar li a:hover{
     color: yellow;
 }
+/* Home Page */
 .banner{
     height: 400px;
     width: 100%;
@@ -89,6 +97,11 @@ nav ul li a:hover{
     margin: 20px;
     width: 100%;
 }
+/* Guide Page */
+/* Game Page */
+
+/* Creator Page */
+/* Sitemap */
 .sitemap{
     display: flex;
     justify-content: center;
@@ -124,13 +137,81 @@ nav ul li a:hover{
 .sitemap_header_title:hover{
     text-decoration: underline;
 }
-
+/* Footer */
+.horizontal{
+    margin-left: 50px;
+    margin-right: 50px;
+}
 footer{
     display: flex;
-    margin: 0px;
-    padding: 10px;
+    flex-direction: column;
+    background-color:yellowgreen;
+}
+.footer_text{
+    display: flex;
     justify-content: center;
-    background-color: yellowgreen;
-    font-family: sans-serif;
+    padding: 3px;
     color: white;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+/* Back to Top button */
+.backtotop {
+    position: fixed;
+    bottom: 60px;
+    right: 40px;
+
+}
+
+.backtotop a {
+    background-color:black;
+    border-radius: 10px;
+    padding: 10px;
+    color:white;
+    border: 1px solid white;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+.backtotop a:hover {
+    background-color: grey;
+}
+
+@media screen and (max-width:600px) {
+
+/* Navigation bar */
+
+    .icon {
+        display: unset;
+    }
+
+    .navbar li:not(:last-child) {
+        display: none;
+    }
+
+    .navresponsive.responsive {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .navresponsive.responsive .navbar li {
+        display: flex;
+    }
+
+    .navresponsive.responsive .navbar {
+        display: flex;
+        margin: 0px;
+        padding: 0px;
+        flex-direction: column;
+    }
+/* Sitemap */
+    .sitemap{
+        display: none;
+    }
+/* Footer */
+    .footer_text {
+        font-size: 8px;
+    }
 }
