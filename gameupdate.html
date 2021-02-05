@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/9f71d7c755.js" crossorigin="anonymous"></script>
+        <title>Complete the Assignment</title>
+    </head>
+    <body>
+        <a id="top"></a>
+        <nav class="navresponsive" id="topnav">
+                <div class="logo"><a href="index.html">WOOOO</a></div>
+                <ul class="navbar">
+                    <li><a href="index.html"><span class="mainpage">HOME</span></a></li>
+                    <li><a href="guide.html">GUIDE</a></li>
+                    <li><a href="game.html">GAME</a></li>
+                    <li><a href="creators.html">CREATORS</a></li>
+                    <li><a href="javascript:void(0)" class="icon" onclick="menu()">MENU <i class="fas fa-chevron-down"></i></a></li>
+                </ul>
+        </nav>
+        <script>
+            function menu() {
+                var x =
+                    document.getElementById("topnav");
+                if (x.className === "navresponsive") {
+                    x.className += " responsive"
+                } else {
+                    x.className = "navresponsive";
+                }
+            }
+    
+        </script>
+        <div class="gameinsert">
+        <!-- INSERT GAME HERE-->
+        <!-- Remove the height after inserting the game -->
+        </div>
+        <div class="sitemap">
+            <div class="sitemap_header_side">
+                <div class="sitemap_header_image"><a href="#">Image</a></div>
+            </div>
+            <div class="sitemap_header_side">
+                <div class="sitemap_header_title"><a href="#">GUIDE</a></div>
+                <div class="sitemap_content">
+                    <div><a href="#">HOW TO PLAY</a></div>
+                    <div><a href="#">ITEMS</a></div>
+                    <div><a href="#">COLLECTABLES</a></div>
+                </div>
+            </div>
+            <div class="sitemap_header_side">
+                <div class="sitemap_header_title"><a href="#">CREATORS</a></div>
+                <div class="sitemap_content">
+                    <div><a href="#">GAME CREATORS</a></div>
+                    <div><a href="#">FEEDBACK</a></div>
+                </div>
+            </div>
+            <div class="sitemap_header_side">
+                <div class="sitemap_header_title"><a href="#">OTHERS</a></div>
+                <div class="sitemap_content">
+                    <div><a href="#">TERMS AND CONDITIONS</a></div>
+                    <div><a href="#">PRIVACY POLICY</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="backtotop"><a href="#top"><i class="fas fa-arrow-up"></i></a></div>
+        <footer>
+            <hr class="horizontal">
+            <p class="footer_text">COPYRIGHT &copy; APPLICATION AND WEBSITE DESIGNED AND PROGRAMMED BY RUSSELL AND PATRICK CHEW </p>
+        </footer>
+    </body>
+
+
+</html>
