@@ -36,84 +36,84 @@
                 </div>
             </div>
         </div> -->
-
-        <div class="popup">
-            <h1>Transcending</h1>
-            <p>This will cost you to lose all current progress and restart with added benefits</p>
-            <p id="transcendAmount">You will gain ###</p>
-            <button onclick="transcend.reset()">Yes</button>
-            <button id="transcendNo">No</button>
-            <p>Each transend point will gain you a 1% multiplier buff to total APS</p>
-        </div>
-        
-        <div class="clicker">
-            <div>
-                <h1 id="asgn">0  Assignment Finished</h1>
-                <p id="aps">0 assignment per second</p>
-                <img src="book.png" alt="" width="50%" id="click" onclick="game.clickAdd(game.clickAmount)">
-            </div>
-            <div class="options">
-                <div>STATS</div>
-                <div>OPTIONS</div>
-                <div id="transcend">TRANSCEND</div>
-                <div onclick="reset()">RESTART</div>
-            </div>
-            <!-- <div class="options">
-                <div>Stats</div>
-                <div>Options</div>
-            </div>
-            <div class="transcend">Transcend</div> -->
-            <!-- <button id="click"><img src="https://art.pixilart.com/8b694d265d632ab.png" alt="" width="20%"></button> -->
-            <!-- <button id="click">Do it</button> -->
-        </div>
-
-
-
-        <div class="upgrades">
-            <h1>Upgrades</h1>
-            <div id="modifiersContainer"></div>
-            <div id="upgradesContainer"></div>
-
-            <!-- <div id="pens">
-                <table class="upgradeItems">
-                    <tr>
-                        <td class="upgradeImage"><img src="" alt="Pens"></td>
-                        <td>
-                            <p>Pens</p>
-                            <p id="pensCost">10 assignments</p>
-                        </td>
-                        <td class="numberDisplay" id="penDisplay">0</td>
-                    </tr>
-                </table>
+        <div class="gameContainer">
+            <div class="popup">
+                <h1>Transcending</h1>
+                <p>This will cost you to lose all current progress and restart with added benefits</p>
+                <p id="transcendAmount">You will gain ###</p>
+                <button onclick="transcend.reset()">Yes</button>
+                <button id="transcendNo">No</button>
+                <p>Each transend point will gain you a 1% multiplier buff to total APS</p>
             </div>
             
-            <div id="paper">
-                <table class="upgradeItems">
-                    <tr>
-                        <td class="upgradeImage"><img src="" alt="Paper"></td>
-                        <td>
-                            <p>Paper</p>
-                            <p id="paperCost">100 assignments</p>
-                        </td>
-                        <td class="numberDisplay" id="paperDisplay">0</td>
-                    </tr>
-                </table>
+            <div class="clicker">
+                <div>
+                    <h1 id="asgn">0  Assignment Finished</h1>
+                    <p id="aps">0 assignment per second</p>
+                    <img src="book.png" alt="" width="50%" id="click" onclick="game.clickAdd(game.clickAmount)">
+                </div>
+                <div class="options">
+                    <div>STATS</div>
+                    <div>OPTIONS</div>
+                    <div id="transcend">TRANSCEND</div>
+                    <div onclick="reset()">RESTART</div>
+                </div>
+                <!-- <div class="options">
+                    <div>Stats</div>
+                    <div>Options</div>
+                </div>
+                <div class="transcend">Transcend</div> -->
+                <!-- <button id="click"><img src="https://art.pixilart.com/8b694d265d632ab.png" alt="" width="20%"></button> -->
+                <!-- <button id="click">Do it</button> -->
             </div>
 
-            <div id="classmate">
-                <table class="upgradeItems">
-                    <tr>
-                        <td class="upgradeImage"><img src="" alt="Classmate"></td>
-                        <td>
-                            <p>Classmate</p>
-                            <p id="classmateCost">1000 assignments</p>
-                        </td>
-                        <td class="numberDisplay" id="classmateDisplay">0</td>
-                    </tr>
-                </table>
-            </div> -->
-        </div>
 
+
+            <div class="upgrades">
+                <h1>Upgrades</h1>
+                <div id="modifiersContainer"></div>
+                <div id="upgradesContainer"></div>
+
+                <!-- <div id="pens">
+                    <table class="upgradeItems">
+                        <tr>
+                            <td class="upgradeImage"><img src="" alt="Pens"></td>
+                            <td>
+                                <p>Pens</p>
+                                <p id="pensCost">10 assignments</p>
+                            </td>
+                            <td class="numberDisplay" id="penDisplay">0</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div id="paper">
+                    <table class="upgradeItems">
+                        <tr>
+                            <td class="upgradeImage"><img src="" alt="Paper"></td>
+                            <td>
+                                <p>Paper</p>
+                                <p id="paperCost">100 assignments</p>
+                            </td>
+                            <td class="numberDisplay" id="paperDisplay">0</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="classmate">
+                    <table class="upgradeItems">
+                        <tr>
+                            <td class="upgradeImage"><img src="" alt="Classmate"></td>
+                            <td>
+                                <p>Classmate</p>
+                                <p id="classmateCost">1000 assignments</p>
+                            </td>
+                            <td class="numberDisplay" id="classmateDisplay">0</td>
+                        </tr>
+                    </table>
+                </div> -->
+            </div>
+        </div>
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         <script src="game.js"></script>
