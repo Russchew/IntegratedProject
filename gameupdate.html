@@ -48,6 +48,17 @@
                 <button id="transcendNo">No</button>
                 <p>Each transend point will gain you a 1% multiplier buff to total APS</p>
             </div>
+
+            <div class="popupStats">
+                <h1>Current Statistics</h1>
+                <ul>
+                    <li id="totalClicks">Total Clicks: ###</li>
+                    <li id="totalAssignment">Total Assignemnts: ###</li>
+                    <li id="totalTranscend">Total Transcend Points: ###</li>
+                    <li id="transcendNumberOfTImes">You have Transcend # times</li>
+                </ul>
+                <button id="statsClose">Close</button>
+            </div>
             
             <div class="clicker">
                 <div>
@@ -56,7 +67,7 @@
                     <img src="book.png" alt="" width="50%" id="click" onclick="game.clickAdd(game.clickAmount)">
                 </div>
                 <div class="options">
-                    <div>STATS</div>
+                    <div id="stats">STATS</div>
                     <div>OPTIONS</div>
                     <div id="transcend">TRANSCEND</div>
                     <div onclick="reset()">RESTART</div>

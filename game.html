@@ -1,41 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <link href="style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/9f71d7c755.js" crossorigin="anonymous"></script>
+        <title>Complete the Assignment</title>
         <link rel="stylesheet" href="game.css">
+        <script>
+            function menu() {
+                var x =
+                    document.getElementById("topnav");
+                if (x.className === "navresponsive") {
+                    x.className += " responsive"
+                } else {
+                    x.className = "navresponsive";
+                }
+            }
+    
+        </script>
     </head>
     <body>
-        <!-- <div class="container-fluid">
-            <div class="row align-items-center assignment-clicker">
-                <div class="col-6 assignment">
-                    <h1 id="asgn">0  assignment finished</h1>
-                    <h3 id="ips">Total APS</h3>
-                    <div class="row">
-                        <div class="col-3"></div>
-                        <button class="col-6 ml-auto" id="click">Do it</button>
-                        <div class="col-3"></div>
-                    </div>
-                </div>
+        <a id="top"></a>
+        <nav class="navresponsive" id="topnav">
+                <div class="logo"><a href="index.html">WOOOO</a></div>
+                <ul class="navbar">
+                    <li><a href="index.html"><span class="mainpage">HOME</span></a></li>
+                    <li><a href="guide.html">GUIDE</a></li>
+                    <li><a href="game.html">GAME</a></li>
+                    <li><a href="creators.html">CREATORS</a></li>
+                    <li><a href="javascript:void(0)" class="icon" onclick="menu()">MENU <i class="fas fa-chevron-down"></i></a></li>
+                </ul>
+        </nav>
 
-                <div class="col-6 upgrades">
-                    <h1 class="row">Upgrades</h1>
-                    <div class="row">
-                        <div class="col-12">
-                            Pens: <span id="pens">0 assignment</span> <button id="pensCost">10 assignments</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            Paper: <span id="paper">0 assignment</span> <button id="paperCost">100 assignments</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+        
+
+        <div class="gameinsert">
+        
+        <!-- INSERT GAME HERE-->
+        
         <div class="gameContainer">
             <div class="popup">
                 <h1>Transcending</h1>
@@ -45,6 +48,17 @@
                 <button id="transcendNo">No</button>
                 <p>Each transend point will gain you a 1% multiplier buff to total APS</p>
             </div>
+
+            <div class="popupStats">
+                <h1>Current Statistics</h1>
+                <ul>
+                    <li id="totalClicks">Total Clicks: ###</li>
+                    <li id="totalAssignment">Total Assignemnts: ###</li>
+                    <li id="totalTranscend">Total Transcend Points: ###</li>
+                    <li id="transcendNumberOfTImes">You have Transcend # times</li>
+                </ul>
+                <button id="statsClose">Close</button>
+            </div>
             
             <div class="clicker">
                 <div>
@@ -53,7 +67,7 @@
                     <img src="book.png" alt="" width="50%" id="click" onclick="game.clickAdd(game.clickAmount)">
                 </div>
                 <div class="options">
-                    <div>STATS</div>
+                    <div id="stats">STATS</div>
                     <div>OPTIONS</div>
                     <div id="transcend">TRANSCEND</div>
                     <div onclick="reset()">RESTART</div>
@@ -114,6 +128,43 @@
                 </div> -->
             </div>
         </div>
+
+        <!-- Remove the height after inserting the game -->
+        </div>
+        <div class="sitemap">
+            <div class="sitemap_header_side">
+                <div class="sitemap_header_image"><a href="#">Image</a></div>
+            </div>
+            <div class="sitemap_header_side">
+                <div class="sitemap_header_title"><a href="#">GUIDE</a></div>
+                <div class="sitemap_content">
+                    <div><a href="#">HOW TO PLAY</a></div>
+                    <div><a href="#">ITEMS</a></div>
+                    <div><a href="#">COLLECTABLES</a></div>
+                </div>
+            </div>
+            <div class="sitemap_header_side">
+                <div class="sitemap_header_title"><a href="#">CREATORS</a></div>
+                <div class="sitemap_content">
+                    <div><a href="#">GAME CREATORS</a></div>
+                    <div><a href="#">FEEDBACK</a></div>
+                </div>
+            </div>
+            <div class="sitemap_header_side">
+                <div class="sitemap_header_title"><a href="#">OTHERS</a></div>
+                <div class="sitemap_content">
+                    <div><a href="#">TERMS AND CONDITIONS</a></div>
+                    <div><a href="#">PRIVACY POLICY</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="backtotop"><a href="#top"><i class="fas fa-arrow-up"></i></a></div>
+
+        <footer>
+            <hr class="horizontal">
+            <p class="footer_text">COPYRIGHT &copy; APPLICATION AND WEBSITE DESIGNED AND PROGRAMMED BY RUSSELL AND PATRICK CHEW </p>
+        </footer>
+
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
         <script src="game.js"></script>

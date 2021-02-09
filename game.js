@@ -1,11 +1,13 @@
 let game = {
     //Items for achivement and stats tracking
-    totalClicks: 0,
-    totalAssignmentEarned: 0,
+    totalGameClicks: 0,
+    totalAssignment: 0,
+    
 
     //Items related to game itself
     assignment: 0,
-    totalAssignment: 0,
+    totalClicks: 0,
+    totalAssignmentEarned: 0,
     clickAmount: 1,
 
     clickAdd: function(amount){
@@ -13,6 +15,7 @@ let game = {
         this.totalAssignment += amount;
         this.totalAssignmentEarned += 1;
         this.totalClicks += 1;
+        this.totalGameClicks += 1;
         display.updateAssignment();
         display.updateModifers();
     },
@@ -202,6 +205,8 @@ let transcend = {
     requiredAmount: 1000000,
     amount: 0,
     totalAmountGained: 0,
+    numberOfTimes: 0,
+
     levelup: function(){
         if (game.assignment >= this.requiredAmount){
             this.amount += 1;
@@ -210,7 +215,14 @@ let transcend = {
     },
     reset: function(){
         this.totalAmountGained = this.amount;
-        var gameSave= {totalAmountGained: this.totalAmountGained,};
+        this.numberOfTimes += 1;
+        var gameSave= {
+            totalAmountGained: this.totalAmountGained,
+            totalGameClicks: game.totalGameClicks,
+            totalAssignment: game.totalAssignment,
+            transendNumberOfTime: transcend.numberOfTimes,
+            transcendAmount: transcend.amount,
+        };
         localStorage.setItem("gameSave", JSON.stringify(gameSave));
         location.reload();
     }
@@ -222,13 +234,15 @@ function saveGame(){
         totalAssignment: game.totalAssignment,
         totalAssignmentEarned: game.totalAssignmentEarned,
         totalClicks: game.totalClicks,
+        totalGameClicks: game.totalGameClicks,
         clickAmount: game.clickAmount,
         ownedItems: upgradesItem.owned,
         itemEarning: upgradesItem.earning,
         itemPrice: upgradesItem.price,
         modifiersPurchase: upgradeModifiers.purchased,
         transcendRequired: transcend.requiredAmount,
-        transcendAmount: transcend.amount
+        transcendAmount: transcend.amount,
+        transendNumberOfTime: transcend.numberOfTimes
     }
     localStorage.setItem("gameSave", JSON.stringify(gamesave))
 }
@@ -240,10 +254,12 @@ function loadGame(){
         if(typeof savedGame.totalAssignment !== "undefined") {game.totalAssignment = savedGame.totalAssignment;}
         if(typeof savedGame.totalAssignmentEarned !== "undefined") {game.totalAssignmentEarned = savedGame.totalAssignmentEarned;}
         if(typeof savedGame.totalClicks !== "undefined") {game.totalClicks = savedGame.totalClicks;}
+        if(typeof savedGame.totalGameClicks !== "undefined") {game.totalGameClicks = savedGame.totalGameClicks;}
         if(typeof savedGame.clickAmount !== "undefined") {game.clickAmount = savedGame.clickAmount;}
         if(typeof savedGame.transcendRequired !== "undefined") {transcend.requiredAmount = savedGame.transcendRequired;}
         if(typeof savedGame.transcendAmount !== "undefined") {transcend.amount = savedGame.transcendAmount;}
         if(typeof savedGame.totalAmountGained !== "undefined") {transcend.totalAmountGained = savedGame.totalAmountGained;}
+        if(typeof savedGame.transendNumberOfTime !== "undefined") {transcend.numberOfTimes = savedGame.transendNumberOfTime;}
         if(typeof savedGame.ownedItems !== "undefined") {
             for (i = 0; i < savedGame.ownedItems.length; i++){
                 upgradesItem.owned[i] = savedGame.ownedItems[i];
@@ -319,6 +335,19 @@ $(document).ready(function(){
 
     $("#transcendNo").click(function(){
         $(".popup").css("display", "none");
+    });
+
+    // --------------------------------------------------------------------------------
+    $("#stats").click(function(){
+        $(".popupStats").css("display", "block");
+        $("#totalClicks").text(`Total Clicks: ${game.totalGameClicks} clicks`)
+        $("#totalAssignment").text(`Total Assignemnts: ${game.totalAssignment} assignments`)
+        $("#totalTranscend").text(`Total Transend Points: ${transcend.amount} points`)
+        $("#transcendNumberOfTImes").text(`You have transcended ${transcend.numberOfTimes} times`)
+    });
+
+    $("#statsClose").click(function(){
+        $(".popupStats").css("display", "none");
     });
 });
 
