@@ -331,6 +331,7 @@ $(document).ready(function(){
     $("#transcend").click(function(){
         $(".popup").css("display", "block");
         document.getElementById("transcendAmount").innerHTML = `You will gain ${transcend.amount} transcend point`
+        $("#transcendRequired").text(`You need ${transcend.requiredAmount} asignment completed`)
     });
 
     $("#transcendNo").click(function(){
