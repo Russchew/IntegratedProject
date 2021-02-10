@@ -9,6 +9,49 @@ body{
     padding: 0px;
     margin: 0px;
 }
+/* Log in Page */
+.logo_total{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 200px 200px 50px 200px;
+}
+.login_logo img{
+   height: 200px;
+}
+.login_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.login_info_text{
+    margin:10px;
+    width: 20%;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding:10px;
+}
+.createaccount{
+    text-align: center;
+}
+.createaccount a{
+    text-decoration: none;
+    color: black;
+}
+.createaccount a:hover{
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    color: grey;
+}
+.submitbutton{
+    display: flex;
+    justify-content: center;
+    padding:20px;
+
+}
 /* Navigation bar */
 .icon {
     display: none;
