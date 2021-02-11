@@ -179,7 +179,7 @@ let display = {
                     <td class="upgradeImage"><img src=${upgradesItem.img[i]} alt="${upgradesItem.name[i]}"></td>
                     <td>
                         <p>${upgradesItem.name[i]}</p>
-                        <p>${upgradesItem.price[i]}</p>
+                        <p>Cost: ${upgradesItem.price[i]}</p>
                     </td>
                     <td class="numberDisplay">${upgradesItem.owned[i]}</td>
                 </tr>
@@ -371,7 +371,7 @@ let profile = {
     updateProfileData: function(){
         firebase.database().ref("game/" + this.name ).set({
             TotalClicks: game.totalGameClicks,
-            transcendAmount: transcend.amount,
+            numberOfTranscend: transcend.numberOfTimes,
             totalAssignmentEarned: Math.floor(game.totalAssignmentEarned),
         }, (error) => {
             if (error) {
