@@ -1,13 +1,13 @@
 let game = {
     //Items for achivement and stats tracking
     totalGameClicks: 0,
-    totalAssignment: 0,
-    
+    totalAssignmentEarned: 0,
+
 
     //Items related to game itself
     assignment: 0,
     totalClicks: 0,
-    totalAssignmentEarned: 0,
+    totalAssignment: 0,
     clickAmount: 1,
 
     clickAdd: function(amount){
@@ -34,7 +34,7 @@ let game = {
 
 let upgradesItem = {
     name: ["Pens", "Paper", "Classmate", "Laptop", "Teacher", "Robot"],
-    img: ["images/pen.jpg", "placeholder.png", "placeholder.png", "images/laptop.jpg", "placeholder.png", "placeholder.png"],
+    img: ["images/Pen.png", "images/Paper.png", "images/Classmate.png", "images/Laptop.png", "placeholder.png", "placeholder.png"],
     basePrice: [10, 100, 500, 1000, 10000, 1000000],
     price: [10, 100, 500, 1000, 10000, 1000000],
     owned: [0, 0 ,0, 0, 0, 0],
@@ -206,6 +206,7 @@ let transcend = {
     amount: 0,
     totalAmountGained: 0,
     numberOfTimes: 0,
+    currentRequiredAmount: 0,
 
     levelup: function(){
         if (game.assignment >= this.requiredAmount){
@@ -213,13 +214,14 @@ let transcend = {
             this.requiredAmount = this.requiredAmount + (this.requiredAmount * 0.1);
         }
     },
+
     reset: function(){
         this.totalAmountGained = this.amount;
         this.numberOfTimes += 1;
         var gameSave= {
             totalAmountGained: this.totalAmountGained,
             totalGameClicks: game.totalGameClicks,
-            totalAssignment: game.totalAssignment,
+            totalAssignmentEarned: game.totalAssignmentEarned,
             transendNumberOfTime: transcend.numberOfTimes,
             transcendAmount: transcend.amount,
         };
@@ -284,11 +286,13 @@ function loadGame(){
 }
 
 function reset(){
+    
     if(confirm("This will wipe out the game and start afresh. Are you sure.")){
-        var gameSave= {};
-        localStorage.setItem("gameSave", JSON.stringify(gameSave));
-        location.reload();
+        profile.RemoveData();
+        console.log("DO IT")
+        
     }
+    
 }
 
 // document.getElementById("transcend").addEventListener("click", function(){
@@ -304,6 +308,7 @@ window.onload = function() {
 
 window.setInterval(function(){
     transcend.levelup();
+    transcend.currentRequiredAmount = transcend.requiredAmount - game.assignment
 });
 
 window.setInterval(function(){
@@ -330,8 +335,14 @@ function debugAdd(x){
 $(document).ready(function(){
     $("#transcend").click(function(){
         $(".popup").css("display", "block");
+        if (transcend.amount == 0) {
+            $("#transcendYes").css("display", "none")
+        } else {
+            $("#transcendYes").css("display", "inline")
+            $("#transendWarning").css("display", "none")
+        }
         document.getElementById("transcendAmount").innerHTML = `You will gain ${transcend.amount} transcend point`
-        $("#transcendRequired").text(`You need ${transcend.requiredAmount} asignment completed`)
+        $("#transcendRequired").text(`You need to complete ${transcend.currentRequiredAmount} asignment`)
     });
 
     $("#transcendNo").click(function(){
@@ -342,7 +353,8 @@ $(document).ready(function(){
     $("#stats").click(function(){
         $(".popupStats").css("display", "block");
         $("#totalClicks").text(`Total Clicks: ${game.totalGameClicks} clicks`)
-        $("#totalAssignment").text(`Total Assignemnts: ${game.totalAssignment} assignments`)
+        var TPE = Math.floor(game.totalAssignmentEarned)
+        $("#totalAssignment").text(`Total Assignemnts: ${TPE} assignments`)
         $("#totalTranscend").text(`Total Transend Points: ${transcend.amount} points`)
         $("#transcendNumberOfTImes").text(`You have transcended ${transcend.numberOfTimes} times`)
     });
@@ -352,161 +364,38 @@ $(document).ready(function(){
     });
 });
 
+// --------------------------------------------For profile-------------------------------------------------------------
+let profile = {
+    name: localStorage.getItem("username"),
 
+    updateProfileData: function(){
+        firebase.database().ref("game/" + this.name ).set({
+            TotalClicks: game.totalGameClicks,
+            transcendAmount: transcend.amount,
+            totalAssignmentEarned: Math.floor(game.totalAssignmentEarned),
+        }, (error) => {
+            if (error) {
+                console.log("unsucessful")
+            } else {
+                console.log("sucessful")
+            }
+        });
+    },
 
-
-
-
-// Old code used before up clean up and future proofing
-
-// window.setInterval(function(){
-//     let displayAssignment = assignment.toString().split(".");
-//     $("#asgn").text(`${displayAssignment[0]} assignment finished`)
-
-//     totalAPS = pensAdd * penMod + paperAdd * paperMod + classmateAdd * classmatMod;
-//     if (Number.isInteger(totalAPS)){
-//         $("#ips").text(`${totalAPS} assignment per second`)
-//     } else {
-//         displayTotalAPS = totalAPS.toFixed(2);
-//         $("#ips").text(`${displayTotalAPS} assignment per second`)
-//     }
-// })
-
-// let assignment = 0;
-
-// //Variable for upgrades
-// let pens = 0;
-// let pensAdd = 0;
-// let paper = 0;
-// let paperAdd= 0;
-// let classmate = 0;
-// let classmateAdd = 0;
-
-// //Variables for modifiers
-// let clickMod = 1;
-// let penMod = 1;
-// let paperMod = 1;
-// let classmatMod = 1;
-
-// //Variables for click and total ASP
-// let clickNumber = 1;
-// let number = 0;
-// let totalAPS = 0;
-
-
-// $(document).ready (function(){
-
-//     //Add assignemnt done when clicking
-//     $("#click").click(function(){
-//         assignmentAdd(clickNumber, clickMod);
-//     })
-
-
-
-//     //Event listener for buying modifiers--------------------------------------------
-
-//     //Modfier upgrade 1 - Adds extra 5 per click
-//     $("#mod1").click(function(){
-//         var mod1Cost = 100;
-//         if (assignment >= mod1Cost){
-//             assignment -= mod1Cost;
-//             clickNumber += 5;
-//             $("#mod1").css("display", "none");
-//         }
-//     })
-
-//     //Modfier upgrade 2 - Adds 2x APS to the pen
-//     $("#mod2").click(function(){
-//         var mod2Cost = 100;
-//         if (assignment >= mod2Cost){
-//             assignment -= mod1Cost;
-//             penMod = penMod * 2;
-//             $("#mod2").css("display", "none");
-//         }
-//     })
-
-
-
-//     //Event listener for buying upgrades----------------------------------------------
-//     $("#pens").click(function(){ buyPens(0); })
-
-//     $("#paper").click(function(){ buyPaper(); })
-
-//     $("#classmate").click(function(){ buyClassmate(); })
-
-
-//     //Functions-----------------------------------------------------------------------
-
-//     //Function to add to assignemnts
-//     function assignmentAdd(number, modifiers){
-//         assignment = assignment + number * modifiers;
-//         let displayAssignment = assignment.toString().split(".");
-//         $("#asgn").text(`${displayAssignment[0]} assignment finished`)
-//     }
-
-//     function buyPens(index){
-//         upgradesItem.cost[index] = Math.floor(upgradesItem.price[index] * Math.pow(1.1,upgradesItem.upgrades[index]));
-//         if (assignment >= upgradesItem.cost[index]){
-//           upgradesItem.upgrades[index] += 1;
-//           assignment -= upgradesItem.cost[index];
-//           $("#asgn").text(`${assignment} assignment finished`)
-//           $("#penDisplay").text(`${upgradesItem.upgrades[index]}`)
-//           pensAdd = upgradesItem.upgrades[index] * 0.2;
-//         }
-//         upgradesItem.cost[index] = Math.floor(upgradesItem.price[index] * Math.pow(1.1,upgradesItem.upgrades[index]));
-//         $("#pensCost") .text(`${upgradesItem.cost[index]} assignments`)
-//     }
-
-//     function buyPaper(){
-//         var paperCost = Math.floor(100 * Math.pow(1.2, paper));
-//         if (assignment >= paperCost){
-//             paper += 1;
-//             assignment -= paperCost;
-//             $("#asgn").text(`${assignment} assignment finished`)
-//             $("#paperDisplay").text(`${paper}`)
-//             paperAdd = paper * 2;
-//         }
-//         var nextPaperCost = Math.floor(100 * Math.pow(1.2, paper)); 
-//         $("#paperCost").text(`${nextPaperCost} assignments`)
-//     }
-
-//     function buyClassmate(){
-//         var classmateCost = Math.floor(1000 * Math.pow(1.3, classmate));
-//         if (assignment >= classmateCost){
-//             classmate += 1;
-//             assignment -= classmateCost;
-//             $("#asgn").text(`${assignment} assignment finished`)
-//             $("#classmateDisplay").text(`${classmate}`)
-//             classmateAdd = classmate * 5;
-//         }
-//         var nextClassmateCost = Math.floor(1000 * Math.pow(1.3, classmate)); 
-//         $("#classmateCost").text(`${nextClassmateCost} assignments`)
-//     }
-
-
-
-//     //Interval---------------------------------------------------------------------
-
-//     //This is to make sure it is always updating the current score
-//     window.setInterval(function(){
-//         let displayAssignment = assignment.toString().split(".");
-//         $("#asgn").text(`${displayAssignment[0]} assignment finished`)
-
-//         totalAPS = pensAdd * penMod + paperAdd * paperMod + classmateAdd * classmatMod;
-//         if (Number.isInteger(totalAPS)){
-//             $("#ips").text(`${totalAPS} assignment per second`)
-//         } else {
-//             displayTotalAPS = totalAPS.toFixed(2);
-//             $("#ips").text(`${displayTotalAPS} assignment per second`)
-//         }
-//     })
-
-//     //Used to update every second
-//     window.setInterval(function(){
-//         console.log(assignment)
-//         assignmentAdd(pensAdd, penMod);
-//         assignmentAdd(paperAdd, paperMod);
-//         assignmentAdd(classmateAdd, penMod);
-//     }, 1000)
-// })
-
+    RemoveData: function() {
+        firebase.database().ref("game/" + this.name).update({
+            TotalClicks: 0,
+            transcendAmount: 0,
+            totalAssignmentEarned: 0,
+        }, (error) => {
+            if (error) {
+                console.log("unsucessful")
+            } else {
+                console.log("sucessful")
+                var gameSave= {};
+                localStorage.setItem("gameSave", JSON.stringify(gameSave));
+                location.reload();
+            }
+        });
+    }
+}
