@@ -319,7 +319,7 @@ window.setInterval(function(){
 
 window.setInterval(function(){
     saveGame();
-    // profile.updateProfileData();
+    profile.updateProfileData();
 }, 5000);
 
 window.setInterval(function(){
@@ -364,7 +364,8 @@ $(document).ready(function(){
     });
 
     $("#profile").click(function(){
-        window.location.href = "login.html";
+        localStorage.setItem("login", "yes")
+        profile.updateProfileData();
     })
 });
 
@@ -373,21 +374,37 @@ let profile = {
     name: localStorage.getItem("username"),
     date: new Date(),
     APS: game.assignmentPerSecond(),
+    login: localStorage.getItem("login"),
 
     updateProfileData: function(){
-        firebase.database().ref("game/" + this.name ).set({
-            TotalClicks: game.totalGameClicks,
-            NumberOfTranscend: transcend.numberOfTimes,
-            TotalAssignmentEarned: Math.floor(game.totalAssignmentEarned),
-            CurrentAPS: this.APS,
-            ClosingTime: this.date.getHours(),
-        }, (error) => {
-            if (error) {
-                console.log("unsucessful")
+        console.log("Running update profile")
+        if (this.login == "yes") {
+            console.log("Checking!")
+            if(this.name == "false"){
+                if(confirm("Do you want to log in and save the data")){
+                    window.location.href = "login.html";
+                } else {
+                    console.log("STOP ASKING")
+                    localStorage.setItem("login", "no")
+                }
             } else {
-                console.log("sucessful")
+                firebase.database().ref("game/" + this.name ).set({
+                    TotalClicks: game.totalGameClicks,
+                    NumberOfTranscend: transcend.numberOfTimes,
+                    TotalAssignmentEarned: game.totalAssignmentEarned,
+                    CurrentAPS: this.APS,
+                    ClosingTime: this.date.getHours(),
+                    OpenTime: this.date .getHours(),
+                }, (error) => {
+                    if (error) {
+                        console.log("unsucessful")
+                    } else {
+                        console.log("sucessful")
+                    }
+                });
             }
-        });
+        }
+        
     },
 
     RemoveData: function() {
@@ -410,22 +427,37 @@ let profile = {
 
 window.addEventListener("load", function() {
     var loadDate = new Date();
-    if(typeof(profile.name) == "string"){
-        // firebase.database().ref("game/" + profile.name ).update({
-        //     OpenTime: loadDate.getHours(),
-        // }, (error) => {
-        //     if (error) {
-        //         console.log("unsucessful")
-        //     } else {
-        //         console.log("sucessful")
-        //     }
-        // });
+    if(profile.name == "false"){
+        if(confirm("Do you want to log in and retrive the data")){
+            window.location.href = "login.html";
+        } else {
+            localStorage.setItem("login", "no")
+        }
+    } else {
+        firebase.database().ref("game/" + profile.name).update({
+            OpenTime: loadDate.getHours(),
+        }, (error) => {
+            if (error) {
+                console.log("unsucessful")
+                localStorage.setItem("username", "false")
+            } else {
+                console.log("sucessful")
+            }
+        });
+        firebase.database().ref('game/' +  profile.name).on("value", (snapshot) => {
+            if(snapshot.val() !== null){
+                closingTime = snapshot.val().ClosingTime;
+                openTime = snapshot.val().OpenTime;
+                CurrentAPS = snapshot.val().CurrentAPS;
+                game.assignment = game.assignment + ((Math.abs(closingTime - openTime) * CurrentAPS) * 60)
+            }
+        })
     }
 })
 
 window.onbeforeunload = () => {
-    localStorage.removeItem("username")
- }
+    localStorage.setItem("username", "false")
+}
 
 // window.addEventListener("beforeunload", function(event) {
 //     profile.updateProfileData();

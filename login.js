@@ -7,6 +7,7 @@ function GetValue(){
 
 function Login(savedUsername, savedPassword){
     if(nameVal === savedUsername && passVal === savedPassword && savedUsername != null){
+        localStorage.setItem("login", "yes")
         localStorage.setItem("username", savedUsername)
         window.location.href = "game.html";
     } else if (savedUsername == null) {
