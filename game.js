@@ -290,7 +290,6 @@ function reset(){
     if(confirm("This will wipe out the game and start afresh. Are you sure.")){
         profile.RemoveData();
         console.log("DO IT")
-        
     }
     
 }
@@ -320,6 +319,7 @@ window.setInterval(function(){
 
 window.setInterval(function(){
     saveGame();
+    // profile.updateProfileData();
 }, 5000);
 
 window.setInterval(function(){
@@ -362,17 +362,25 @@ $(document).ready(function(){
     $("#statsClose").click(function(){
         $(".popupStats").css("display", "none");
     });
+
+    $("#profile").click(function(){
+        window.location.href = "login.html";
+    })
 });
 
 // --------------------------------------------For profile-------------------------------------------------------------
 let profile = {
     name: localStorage.getItem("username"),
+    date: new Date(),
+    APS: game.assignmentPerSecond(),
 
     updateProfileData: function(){
         firebase.database().ref("game/" + this.name ).set({
             TotalClicks: game.totalGameClicks,
-            numberOfTranscend: transcend.numberOfTimes,
-            totalAssignmentEarned: Math.floor(game.totalAssignmentEarned),
+            NumberOfTranscend: transcend.numberOfTimes,
+            TotalAssignmentEarned: Math.floor(game.totalAssignmentEarned),
+            CurrentAPS: this.APS,
+            ClosingTime: this.date.getHours(),
         }, (error) => {
             if (error) {
                 console.log("unsucessful")
@@ -399,3 +407,27 @@ let profile = {
         });
     }
 }
+
+window.addEventListener("load", function() {
+    var loadDate = new Date();
+    if(typeof(profile.name) == "string"){
+        // firebase.database().ref("game/" + profile.name ).update({
+        //     OpenTime: loadDate.getHours(),
+        // }, (error) => {
+        //     if (error) {
+        //         console.log("unsucessful")
+        //     } else {
+        //         console.log("sucessful")
+        //     }
+        // });
+    }
+})
+
+window.onbeforeunload = () => {
+    localStorage.removeItem("username")
+ }
+
+// window.addEventListener("beforeunload", function(event) {
+//     profile.updateProfileData();
+//     event.returnValue = "Write something clever here..";
+// });
