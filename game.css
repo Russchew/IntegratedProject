@@ -77,6 +77,10 @@
 
 .clicker{
     width: 50%;
+    /* background-image: url("Images/Background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -112,6 +116,7 @@
 .options {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .options div {
@@ -168,4 +173,17 @@
 .popupStats ul{
     text-align: left;
     font-size: 25px;
+}
+
+@media screen and (max-width: 768px){
+    .gameContainer {
+        height: auto;
+        flex-direction: column;
+    }
+    .clicker{
+        width: 100%;
+    }
+    .upgrades{
+        width: 100%;
+    }
 }

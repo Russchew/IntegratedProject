@@ -294,10 +294,6 @@ function reset(){
     
 }
 
-// document.getElementById("transcend").addEventListener("click", function(){
-//     document.getElementsByClassName("popup").style.display = "block"
-// }, false)
-
 window.onload = function() {
     loadGame();
     display.updateAssignment();
@@ -388,11 +384,12 @@ let profile = {
                     localStorage.setItem("login", "no")
                 }
             } else {
+                var APS = game.assignmentPerSecond()
                 firebase.database().ref("game/" + this.name ).set({
                     TotalClicks: game.totalGameClicks,
                     NumberOfTranscend: transcend.numberOfTimes,
                     TotalAssignmentEarned: game.totalAssignmentEarned,
-                    CurrentAPS: this.APS,
+                    CurrentAPS: APS,
                     ClosingTime: this.date.getHours(),
                     OpenTime: this.date .getHours(),
                 }, (error) => {
@@ -403,6 +400,8 @@ let profile = {
                     }
                 });
             }
+        } else {
+            console.log("please stop")
         }
         
     },
@@ -425,7 +424,7 @@ let profile = {
     }
 }
 
-window.addEventListener("load", function() {
+window.addEventListener("DOMContentLoaded", function() {
     var loadDate = new Date();
     if(profile.name == "false"){
         if(confirm("Do you want to log in and retrive the data")){
@@ -434,6 +433,7 @@ window.addEventListener("load", function() {
             localStorage.setItem("login", "no")
         }
     } else {
+        console.log("Offline Check")
         firebase.database().ref("game/" + profile.name).update({
             OpenTime: loadDate.getHours(),
         }, (error) => {
@@ -445,11 +445,19 @@ window.addEventListener("load", function() {
             }
         });
         firebase.database().ref('game/' +  profile.name).on("value", (snapshot) => {
+            console.log("Adding?")
             if(snapshot.val() !== null){
                 closingTime = snapshot.val().ClosingTime;
                 openTime = snapshot.val().OpenTime;
                 CurrentAPS = snapshot.val().CurrentAPS;
-                game.assignment = game.assignment + ((Math.abs(closingTime - openTime) * CurrentAPS) * 60)
+                console.log(snapshot.val().ClosingTime)
+                console.log(snapshot.val().OpenTime)
+
+                timeInterval = Math.abs(closingTime - openTime)
+                console.log(timeInterval)
+                numbertoadd = ((timeInterval * CurrentAPS) * 60)
+                console.log(numbertoadd)
+                game.assignment = game.assignment + numbertoadd
             }
         })
     }
@@ -458,8 +466,3 @@ window.addEventListener("load", function() {
 window.onbeforeunload = () => {
     localStorage.setItem("username", "false")
 }
-
-// window.addEventListener("beforeunload", function(event) {
-//     profile.updateProfileData();
-//     event.returnValue = "Write something clever here..";
-// });
