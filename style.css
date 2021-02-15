@@ -2,6 +2,11 @@
 *{
     box-sizing: border-box;
 }
+@font-face {
+    font-family: pixel;
+    src: url(Fonts/Pixellari.ttf)
+  }
+
 html{
     scroll-behavior: smooth;
 }
@@ -67,7 +72,7 @@ body{
 }
 .navbar{
     display: flex;
-    background-color: grey;
+    background-color: #F59898;
     padding: 20px;
     margin: 0px;
     justify-content: center;
@@ -77,10 +82,13 @@ body{
     color: white;
     margin: 20px;
     text-decoration: none;
-    font-family: sans-serif;
+    font-family:pixel;
 }
 .navbar li a:hover{
-    color: yellow;
+    transition-property: all;
+    transition-timing-function:ease-in-out;
+    transition-duration: 0.2s;
+    color: #B76767;
 }
 /* Home Page */
 .banner{
@@ -92,32 +100,38 @@ body{
     display: flex;
     padding: 10px;
     width: 100%;
-    background-color: cornflowerblue;
+    background-color:#F59898;
 }
 .home_teacher{
     background-color: white;
-    padding: 20px;
-    flex: 1;
+    padding: 100px;
+    width:40%;
     margin: 10px;
 }
 .home_message{
-    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F59898;
     padding: 20px;
-    flex: 1;
+    width: 60%;
     margin: 10px;
+    font-family: pixel;
+    font-size: 40px;
+    color: white;
 }
 .home_experience{
     width: 100%;
-    background-color:yellowgreen;
+    background-color:#75DDB8;
     padding: 20px;
 }
 .home_experience_inner_text{
     display: flex;
     justify-content: center;
     padding: 10px;
-    background-color: tomato;
-
     color: white;
+    font-family: pixel;
+    font-size: 50px;
 }
 .home_experience_inner_images{
     display: flex;
@@ -126,36 +140,347 @@ body{
 .home_experience_inner_inside_image_side{
     display: flex;
     justify-content: center;
-    background-color: white;
     flex: 1;
     width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.home_experience_inner_inside_image_side a img{
+    width: 100%;
+}
 .home_experience_inner_inside_image_middle{
     display: flex;
     justify-content: center;
-    background-color: white;
     flex: 1;
     margin: 20px;
     width: 100%;
 }
+.home_experience_inner_inside_image_middle a img{
+    width: 100%;;
+}
 /* Guide Page */
+.guidebanner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: pixel;
+    font-size: 100px;
+    height: 420px;
+    width: 100%;
+    background-image: url(Images/Guidebanner.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.guidenavigation{
+    display: flex;
+    background-color:white;
+    width: 100%;
+
+}
+.guidenavigation_innerone{
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    background-color:white;
+}
+.guidenavigation_innerone a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    flex: 1;
+    padding: 20px;
+    font-family: pixel;
+}
+.guidenavigation_innerone a:hover{
+    color:white;
+    background-color:#75DDB8;
+    transition-property: all;
+    transition-timing-function:ease-in-out;
+    transition-duration: 0.2s;
+}
+.guidenavigation_innertwo{
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    background-color: white;
+}
+.guidenavigation_innertwo a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    flex: 1;
+    padding: 20px;
+    font-family: pixel;
+}
+.guidenavigation_innertwo a:hover{
+    color:white;
+    background-color:#b68df7;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+.guidenavigation_innerthree{
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    background-color: white;
+}
+.guidenavigation_innerthree a{
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    flex: 1;
+    padding: 20px;
+    font-family: pixel;
+}
+.guidenavigation_innerthree a:hover{
+    background-color: #FFB346;
+    color: white;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+.headerone{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    background-color:#75DDB8;
+    color:white;
+    font-family:pixel;
+}
+.rules{
+    background-color: #65C3A1;
+    padding: 10px;
+}
+.borderrules{
+    background-color: #65C3A1;
+    border: 2px solid white;
+}
+.titleofrules{
+    margin: 0px;
+    color: white;
+    font-family: pixel;
+    text-decoration: underline;
+    text-align: center;
+}
+.fullrules{
+    margin: 0px;
+}
+.headertwo{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    background-color:#b68df7;
+    color:white;
+    font-family: pixel;
+}
+.headerthree{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    background-color:#FFB346;
+    color:white;
+    font-family:pixel;
+}
+.iteminformation_inner{
+    display: flex;
+    background-color: #7e61ac;
+    padding: 70px;
+}
+.iteminformation_image{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px;
+}
+.iteminformation_inner_image{
+    display: flex;
+    justify-content: center;
+}
+.iteminformation_inner_text{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: pixel;
+    font-size: 40px;
+    padding: 50px;
+}
+.iteminformation_explanation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: pixel;
+    flex: 1;
+    background-color:#b68df7;
+    border-radius: 14px;
+}
+
+.iteminformation_inner_image img{
+    width: 60%;
+}
+.collectables{
+    display:flex;
+    justify-content: center;
+    padding: 80px;
+    flex-direction: column;
+    background-color:#b67f32 ;
+}
+.collectables_inner{
+    display: flex;
+    padding: 30px;
+    background-color:#FFB346;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.collectables_image{
+    width: 20%;
+}
+.collectables_image img{
+    width: 80%;
+}
+.collectables_explanation{
+    display: flex;
+    padding: 60px;
+    align-items: center;
+    font-family: pixel;
+    color: white;
+    width: 80%;
+}
 /* Game Page */
 .gameinsert{
     display: flex;
     padding: 20px;
     background-color: blue;
     width: 100%;
-    /* height: 200px; Remove after game inserted just for indication */
 }
 
 /* Creator Page */
+.creatorbanner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: pixel;
+    font-size: 100px;
+    height: 420px;
+    width: 100%;
+    background-image: url(Images/creatorsbanner.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.creators{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    background-color:#75DDB8;
+    color:white;
+    font-family:pixel; 
+}
+.creatorsinfo{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 50px;
+    background-color:#65C3A1 ;
+}
+.creatorsimage{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+.creatorsimage img{
+   height: 250px;
+}
+.creatorsname{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-family: pixel;
+    font-size: 40px;
+}
+.creatorsrole{
+    display: flex;
+    justify-content: center;
+    color: #43866f;
+    font-family: pixel;
+    font-size: 20px;
+}
+.creatorscontact{
+    margin: 0px;
+}
+.creatorscontact a{
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 40px;
+    text-decoration: none;
+}
+.creatorscontact a i:hover{
+    transform: scale(1.2);
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+.feedback{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    background-color:#b68df7;
+    color:white;
+    font-family:pixel; 
+}
+.feedbackform{
+    background-color:#7e61ac ;
+    padding: 40px;
+}
+.feedbackform_inner{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.formtextone{
+    width: 300px;
+}
+.formtexttwo{
+    width: 300px;
+}
+.feedbackheader{
+    margin: 0px;
+    color: white;
+    font-size: 35px;
+    font-family: pixel;
+    padding: 10px;
+}
+.submit{
+    background-color: #b68df7;
+    color:white;
+    font-family: pixel;
+    padding: 10px 50px 10px 50px;
+    border: solid white 2px;
+    border-radius: 10px;
+}
 /* Sitemap */
 .sitemap{
     display: flex;
     justify-content: center;
     padding: 10px;
+    background-color: #B76767;
 }
 .sitemap_header_side{
     display: flex;
@@ -168,7 +493,8 @@ body{
 .sitemap_header_title a{
     display: flex;
     justify-content: center;
-    color: black;
+    color:white;
+    font-family: pixel;
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
@@ -182,20 +508,26 @@ body{
     display: flex;
     justify-content: center;
     margin: 5px;
+    color:rgb(206, 206, 206);
     text-decoration: none;
+    font-family: pixel;
 }
-.sitemap_header_title:hover{
+.sitemap_content a:hover{
     text-decoration: underline;
+}
+.sitemap_header_title a:hover{
+    color:rgb(206, 206, 206);
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
 }
 /* Footer */
 .horizontal{
-    margin-left: 50px;
-    margin-right: 50px;
 }
 footer{
     display: flex;
     flex-direction: column;
-    background-color:yellowgreen;
+    background-color:#F59898;
 }
 .footer_text{
     display: flex;
@@ -203,7 +535,7 @@ footer{
     padding: 3px;
     color: white;
     font-size: 12px;
-    font-family: sans-serif;
+    font-family: pixel;
 }
 /* Back to Top button */
 .backtotop {
