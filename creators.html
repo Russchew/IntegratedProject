@@ -6,20 +6,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/9f71d7c755.js" crossorigin="anonymous"></script>
         <title>Clickssignment</title>
-    </head>
-    <body>
-        <a id="top"></a>
-        <nav class="navresponsive" id="topnav">
-                <div class="logo"><a href="index.html">WOOOO</a></div>
-                <ul class="navbar">
-                    <li><a href="index.html"><span class="mainpage">HOME</span></a></li>
-                    <li><a href="guide.html">GUIDE</a></li>
-                    <li><a href="game.html">GAME</a></li>
-                    <li><a href="creators.html">CREATORS</a></li>
-                    <li><a href="javascript:void(0)" class="icon" onclick="menu()">MENU <i class="fas fa-chevron-down"></i></a></li>
-                </ul>
-        </nav>
-        
         <script>
             function menu() {
                 var x =
@@ -30,9 +16,23 @@
                     x.className = "navresponsive";
                 }
             }
-    
         </script>
+    </head>
+    <body>
+        <a id="top"></a>
 
+        <!-- NavBar -->
+        <nav class="navresponsive" id="topnav">
+            <div class="logo"><a href="index.html">WOOOO</a></div>
+            <ul class="navbar">
+                <li><a href="index.html"><span class="mainpage">HOME</span></a></li>
+                <li><a href="guide.html">GUIDE</a></li>
+                <li><a href="game.html">GAME</a></li>
+                <li><a href="creators.html">CREATORS</a></li>
+                <li><a href="javascript:void(0)" class="icon" onclick="menu()">MENU <i class="fas fa-chevron-down"></i></a></li>
+            </ul>
+        </nav>
+    
         <!-- Creators -->
         <div class="creatorbanner">CREATORS</div>
         <div class="creators" id="creator">CREATORS</div>
@@ -50,25 +50,25 @@
                 <div class="creatorscontact"><a href="mailto:S10194041@connect.np.edu.sg"><i class="fas fa-envelope"></i></a></div>
             </div>
         </div>
-        <div class="feedback" id="feedbacks">FEEDBACK</div>
 
         <!-- Form -->
+        <div class="feedback" id="feedbacks">FEEDBACK</div>
         <form class="feedbackform">
-         <div class="feedbackform_inner">
-            <h3 class="feedbackheader">NAME</h3>
-            <input class="formtextone" type="text" placeholder="John" required>
-        </div>
-        <div class="feedbackform_inner">
-            <h3 class="feedbackheader">EMAIL</h3>
-            <input class="formtextone" type="text" placeholder="...@gmail.com" required>
-        </div>
-        <div class="feedbackform_inner">
-            <h3 class="feedbackheader">MESSAGE</h3>
-            <input class="formtexttwo" type="text" placeholder="Message" required>
-        </div>
-        <div class="feedbackform_inner">
-        <input class="submit" type="submit" value="Submit">
-        </div>
+            <div class="feedbackform_inner">
+                <h3 class="feedbackheader">NAME</h3>
+                <input class="formtextone" type="text" placeholder="John" required>
+            </div>
+            <div class="feedbackform_inner">
+                <h3 class="feedbackheader">EMAIL</h3>
+                <input class="formtextone" type="text" placeholder="...@gmail.com" required>
+            </div>
+            <div class="feedbackform_inner">
+                <h3 class="feedbackheader">MESSAGE</h3>
+                <input class="formtexttwo" type="text" placeholder="Message" required>
+            </div>
+            <div class="feedbackform_inner">
+                <input class="submit" type="submit" value="Submit">
+            </div>
         </form>
 
         <!-- Sitemap -->
