@@ -83,12 +83,16 @@ body{
     margin: 20px;
     text-decoration: none;
     font-family:pixel;
+    font-size: 22px;
 }
 .navbar li a:hover{
     transition-property: all;
     transition-timing-function:ease-in-out;
     transition-duration: 0.2s;
     color: #B76767;
+}
+.terms{
+    display: none;
 }
 /* Home Page */
 .banner{
@@ -102,19 +106,16 @@ body{
     width: 100%;
     background-color:#F59898;
 }
-.home_teacher{
-    background-color: white;
-    padding: 100px;
-    width:40%;
-    margin: 10px;
-}
 .home_message{
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #F59898;
-    padding: 20px;
-    width: 60%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    width: 100%;
     margin: 10px;
     font-family: pixel;
     font-size: 40px;
@@ -191,6 +192,7 @@ body{
     flex: 1;
     padding: 20px;
     font-family: pixel;
+    font-size: 22px;
 }
 .guidenavigation_innerone a:hover{
     color:white;
@@ -212,6 +214,7 @@ body{
     color: black;
     flex: 1;
     padding: 20px;
+    font-size: 22px;
     font-family: pixel;
 }
 .guidenavigation_innertwo a:hover{
@@ -235,6 +238,7 @@ body{
     flex: 1;
     padding: 20px;
     font-family: pixel;
+    font-size: 22px;
 }
 .guidenavigation_innerthree a:hover{
     background-color: #FFB346;
@@ -291,7 +295,12 @@ body{
     color:white;
     font-family:pixel;
 }
-.iteminformation_inner{
+.iteminformation_innerone{
+    display: flex;
+    background-color: #7e61ac;
+    padding: 70px;
+}
+.iteminformation_innertwo{
     display: flex;
     background-color: #7e61ac;
     padding: 70px;
@@ -360,9 +369,187 @@ body{
 /* Game Page */
 .gameinsert{
     display: flex;
-    padding: 20px;
-    background-color: blue;
+    padding:20px;
     width: 100%;
+}
+.gameContainer{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    font-family:pixel;
+    background-image: url(Images/Guidebanner.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+}
+
+.upgrades{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    overflow: auto;
+}
+
+.upgradeItems{
+    background-color: #75DDB8;
+    color: white;
+    transition: all .1s ease-in-out;
+    width: 100%;
+    padding: 10px 20px;
+    margin: 10px 0px;
+    font-size: 30px;
+    /* border: 2px;
+    border-style: solid;
+    border-color: black; */
+}
+
+.upgradeItems:hover{
+    background-color: rgba(218, 218, 218, 0.719);
+    transition: all .1s ease-in-out;
+    cursor: pointer;
+}
+
+.upgradeItems .upgradeImage{
+    width: 15%;
+}
+
+.upgradeItems .upgradeImage img{
+    width: 100%;
+}
+
+.upgradeItems p{
+    margin: 0;
+    margin-left:  20px;
+    width: 60%;
+}
+
+.upgradeItems p:first-of-type{
+    margin-bottom: 10px;
+    font-size: 50px;
+}
+
+.numberDisplay{
+    font-size: 70px;
+    width: 13%;
+}
+
+#modifiersContainer{
+    margin: 20px 0px;
+}
+
+#modifiersContainer img{
+    height: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.modifiers{
+    margin: 0px 5px;
+    background-color: #FFB346;
+    padding: 10px;
+    font-size: 30px;
+}
+
+.clicker{
+    width: 50%;
+    /* background-image: url("Images/Background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.clicker h1, .upgrades h1{
+    margin: 5px 0px;
+    font-size: 50px;
+}
+
+.clicker p{
+    font-size: 30px;
+    margin: 0px 0px 20px 0px;
+}
+
+.clicker img{
+    margin: 50px 0px;
+    transition: all .1s ease-in-out;
+    width: 350px;
+}
+
+.clicker img:hover{
+    transform: scale(1.10);
+    cursor: pointer;
+}
+
+.clicker img:active{
+    transform: scale(0.99);
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.options div {
+    background-color: antiquewhite;
+    padding: 10px;
+    width: 150px;
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+    margin: 10px 10px;
+    font-size: 20px;
+}
+
+.transcend {
+    position: absolute;
+    bottom: 35px;
+    right : 30px;
+    background-color: antiquewhite;
+    padding: 10px;
+    width: 100px;
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+    margin: 10px 0px;
+    font-size: 20px;
+}
+
+.popup {
+    display: none;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 50%;
+    height: 50%;
+    text-align: center;
+}
+
+.popupStats{
+    display: none;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 50%;
+    height: 50%;
+    text-align: center;
+}
+
+.popupStats ul{
+    text-align: left;
+    font-size: 25px;
 }
 
 /* Creator Page */
@@ -387,6 +574,7 @@ body{
     background-color:#75DDB8;
     color:white;
     font-family:pixel; 
+    font-size: 22px;
 }
 .creatorsinfo{
     display: flex;
@@ -441,7 +629,8 @@ body{
     padding:20px;
     background-color:#b68df7;
     color:white;
-    font-family:pixel; 
+    font-family:pixel;
+    font-size: 22px;
 }
 .feedbackform{
     background-color:#7e61ac ;
@@ -588,12 +777,45 @@ footer{
         padding: 0px;
         flex-direction: column;
     }
-/* Sitemap */
-    .sitemap{
-        display: none;
+    .terms{
+        display: unset;
     }
-/* Footer */
-    .footer_text {
-        font-size: 8px;
+    /* Home */
+
+    /* Guide */
+    .guidenavigation{
+        flex-direction: column;
     }
-}
+    .iteminformation_innerone{
+        flex-direction: column;
+    }
+    .iteminformation_innertwo{
+        flex-direction: column-reverse;
+    }
+    /* Game */
+    .gameContainer {
+        height: auto;
+        flex-direction: column;
+    }
+    .clicker{
+        width: 100%;
+    }
+    .upgrades{
+        width: 100%;
+    }
+    /* Creators */
+    .creatorbanner {
+        font-size: 70px;
+    }
+    .creatorsinfo{
+        flex-direction: column;
+    }
+    /* Sitemap */
+        .sitemap{
+            display: none;
+        }
+    /* Footer */
+        .footer_text {
+            font-size: 8px;
+        }
+    }
