@@ -583,6 +583,9 @@ body{
     padding: 50px;
     background-color:#65C3A1 ;
 }
+.creatorsinfo_inner{
+    padding: 50px;
+}
 .creatorsimage{
     display: flex;
     justify-content: center;
@@ -711,8 +714,6 @@ body{
     transition-duration: 0.2s;
 }
 /* Footer */
-.horizontal{
-}
 footer{
     display: flex;
     flex-direction: column;
