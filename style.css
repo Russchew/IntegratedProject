@@ -15,6 +15,9 @@ body{
     margin: 0px;
 }
 /* Log in Page */
+.loginbackground{
+    background-image: url(Images/background-2.0.png);
+}
 .logo_total{
     display: flex;
     justify-content: center;
@@ -40,6 +43,7 @@ body{
 }
 .createaccount{
     text-align: center;
+    margin: 10px;
 }
 .createaccount a{
     text-decoration: none;
@@ -57,6 +61,10 @@ body{
     padding:20px;
 
 }
+.wrong{
+    text-align: center;
+    color: red;
+}
 /* Navigation bar */
 .icon {
     display: none;
@@ -64,11 +72,21 @@ body{
 }
 
 .navresponsive{
-    background-color: aqua;
+    background-image: url(Images/background-2.0.png);
+    background-size: cover;
 }
 .logo{
     display: flex;
     justify-content: center;
+}
+.logo a img{
+    height: 100px;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+.logo a img:hover{
+    transform: scale(1.1);
 }
 .navbar{
     display: flex;
@@ -96,9 +114,39 @@ body{
 }
 /* Home Page */
 .banner{
-    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: pixel;
+    font-size: 100px;
     width: 100%;
-    background-color: chocolate;
+    padding: 40px;
+    background-image: url(Images/background-2.0.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+.bannerimageone img{
+    width:100%;
+}
+.bannerimagetwo{
+    animation: bannerlogo 2s linear infinite;
+}
+@keyframes bannerlogo {
+    0% {
+        transform: scale(0.9);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.9);
+    }
+}
+
+.bannerimagetwo img{
+    width: 100%;
 }
 .home_section{
     display: flex;
@@ -149,6 +197,12 @@ body{
 .home_experience_inner_inside_image_side a img{
     width: 100%;
 }
+.home_experience_inner_inside_image_side a img:hover{
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+    transform: scale(1.05);
+}
 .home_experience_inner_inside_image_middle{
     display: flex;
     justify-content: center;
@@ -158,6 +212,14 @@ body{
 }
 .home_experience_inner_inside_image_middle a img{
     width: 100%;;
+    
+}
+.home_experience_inner_inside_image_middle a img:hover{
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+    transform: scale(1.05);
+    
 }
 /* Guide Page */
 .guidebanner{
@@ -264,16 +326,22 @@ body{
 .borderrules{
     background-color: #65C3A1;
     border: 2px solid white;
+    padding: 20px;
 }
 .titleofrules{
     margin: 0px;
+    font-size: 50px;
     color: white;
     font-family: pixel;
-    text-decoration: underline;
     text-align: center;
 }
 .fullrules{
     margin: 0px;
+    color: white;
+    font-family: pixel;
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
 }
 .headertwo{
     display: flex;
@@ -330,9 +398,12 @@ body{
     align-items: center;
     color: white;
     font-family: pixel;
+    padding: 50px;
     flex: 1;
     background-color:#b68df7;
     border-radius: 14px;
+    font-size: 40px;
+    text-align: center;
 }
 
 .iteminformation_inner_image img{
@@ -353,18 +424,32 @@ body{
     margin-top: 10px;
 }
 .collectables_image{
-    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    width: 30%;
 }
 .collectables_image img{
-    width: 80%;
+    height: 180px;
 }
 .collectables_explanation{
     display: flex;
+    flex-direction: column;
     padding: 60px;
     align-items: center;
     font-family: pixel;
     color: white;
-    width: 80%;
+    width: 70%;
+}
+.collectables_explanation h2{
+    font-size: 40px;
+    margin: 20px;
+    
+}
+.collectables_explanation p{
+    margin: 0px;
+    font-size: 30px;
 }
 /* Game Page */
 .gameinsert{
@@ -679,6 +764,16 @@ body{
     flex-direction: column;
     padding: 10px;
 }
+.sitemap_header_image a img{
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    height: 120px;
+}
+
+.sitemap_header_image a img:hover{
+    transform: scale(1.1);
+}
 .sitemap_header_title{
     margin-bottom: 20px;
 }
@@ -712,6 +807,38 @@ body{
     transition-property: all;
     transition-timing-function: ease-in-out;
     transition-duration: 0.2s;
+}
+/* Terms and conditions and privacy policy */
+.others{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color:#65C3A1 ;
+}
+.termsandconditions{
+    padding: 30px;
+}
+.termsandconditions h2{
+    text-align: center;
+    margin: 0px;
+    font-family: pixel;
+    color: white;
+}
+.termsandconditions p{
+    color:white;
+}
+.privacypolicy{
+    padding: 30px;
+}
+.privacypolicy h2{
+    text-align: center;
+    margin: 0px;
+    font-family: pixel;
+    color: white;
+}
+.privacypolicy p{
+    color:white;
 }
 /* Footer */
 footer{
@@ -749,7 +876,11 @@ footer{
 .backtotop a:hover {
     background-color: grey;
 }
-
+/* Others */
+.hrcolor {
+    border-top: 2px solid white;
+    width: 500px;
+}
 @media screen and (max-width:600px) {
 
 /* Navigation bar */
@@ -782,7 +913,22 @@ footer{
         display: unset;
     }
     /* Home */
-
+    .banner{
+        flex-direction: column;
+    }
+    .home_section{
+        text-align: center;
+    }
+    .home_experience_inner_text{
+        text-align: center;
+    }
+    .home_experience_inner_images{
+        flex-direction: column;
+    }
+    .home_experience_inner_inside_image_middle{
+        margin-right: 0px;
+        margin-left: 0px;
+    }
     /* Guide */
     .guidenavigation{
         flex-direction: column;
@@ -792,6 +938,28 @@ footer{
     }
     .iteminformation_innertwo{
         flex-direction: column-reverse;
+    }
+    .collectables_inner{
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .collectables_image{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 40px;
+    }
+    .collectables_explanation{
+        padding: 0px;
+    }
+    .collectables_explanation h2{
+        font-size: 40px;
+    }
+    .collectables_explanation p{
+        font-size: 20px;
     }
     /* Game */
     .gameContainer {

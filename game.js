@@ -34,7 +34,7 @@ let game = {
 
 let upgradesItem = {
     name: ["Pens", "Paper", "Classmate", "Laptop", "Teacher", "Robot"],
-    img: ["images/Pen.png", "images/Paper.png", "images/Classmate.png", "images/Laptop.png", "images/Teacher.png", "placeholder.png"],
+    img: ["images/Pen.png", "images/Paper.png", "images/Classmate.png", "images/Laptop.png", "images/Teacher.png", "images/robot.png"],
     basePrice: [10, 100, 500, 1000, 10000, 1000000],
     price: [10, 100, 500, 1000, 10000, 1000000],
     owned: [0, 0 ,0, 0, 0, 0],
@@ -68,7 +68,7 @@ let upgradeModifiers = {
         "Clicking is twice as efficent", "Clicking is twice as efficent",
 
         //Upgrades for Pen
-        "Pens are twice as effecient", "Pens are twice as effecient", 
+        "Pens are twice as effecient", "Pens are twice as efficient", 
 
         //Upgrade for paper
         "Paper is twice as efficent", "Paper is twice as efficent",
@@ -76,13 +76,13 @@ let upgradeModifiers = {
     type: ["click", "click", "building", "building",  "building", "building",],
     img: [
         //Upgrades for Clicks
-        "placeholder.png", "placeholder.png",
+        "Images/BookX2.png", "Images/BookX2.png",
 
         //Upgrades for Pen
-        "placeholder.png", "placeholder.png",
+        "Images/PenX2.png", "Images/PenX2.png",
 
         //Upgrade for paper
-        "placeholder.png", "placeholder.png",
+        "Images/paperX2.png", "Images/paperX2.png",
     ],
     cost: [
         //Upgrades for Clicks
