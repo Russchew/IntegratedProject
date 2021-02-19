@@ -1008,6 +1008,10 @@ footer{
     .creatorsinfo{
         flex-direction: column;
     }
+    /* 3D model */
+    .model-embed{
+        flex-direction: column;
+    }
     /* Sitemap */
         .sitemap{
             display: none;
