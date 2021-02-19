@@ -637,7 +637,7 @@ body{
     font-size: 25px;
 }
 
-/* Creator Page */
+/* -------------------------------------------------Creator Page---------------------------- */
 .creatorbanner{
     display: flex;
     justify-content: center;
@@ -752,6 +752,35 @@ body{
     border: solid white 2px;
     border-radius: 10px;
 }
+
+/* 3D model */
+.model{
+    font-family: pixel;
+    background-color: #d88b1f;
+    
+    
+}
+.model h3{
+    background-color: #FFB346;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    margin: 0;
+}
+
+.model .model-embed{
+    padding: 50px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.model .sketchfab-embed-wrapper{
+    padding: 0px 40px;
+    color: white;
+}
+
+
 /* Sitemap */
 .sitemap{
     display: flex;
