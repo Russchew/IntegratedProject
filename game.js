@@ -10,6 +10,7 @@ let game = {
     totalAssignment: 0,
     clickAmount: 1,
 
+    // Add assignment per click
     clickAdd: function(amount){
         this.assignment += amount;
         this.totalAssignment += amount;
@@ -20,6 +21,7 @@ let game = {
         display.updateModifers();
     },
 
+    // Calculate the APS 
     assignmentPerSecond: function(){
         var APS = 0;
         for(i = 0; i < upgradesItem.name.length; i++){
@@ -32,6 +34,8 @@ let game = {
     },
 }
 
+
+// "buildings" 
 let upgradesItem = {
     name: ["Pens", "Paper", "Classmate", "Laptop", "Teacher", "Robot"],
     img: ["images/Pen.png", "images/Paper.png", "images/Classmate.png", "images/Laptop.png", "images/Teacher.png", "images/robot.png"],
@@ -52,6 +56,7 @@ let upgradesItem = {
     }
 }
 
+// Upgrades that cna be brought after a certain amount it reached
 let upgradeModifiers = {
     name: [
         //Upgrades for Clicks
@@ -146,8 +151,11 @@ let upgradeModifiers = {
     }
 }
 
+
+// Display the assignment
 let display = {
     updateAssignment: function(){
+        // Ensures the 0 doesnt appear
         if (Number.isInteger(game.assignment)){
             document.getElementById("asgn").innerHTML = game.assignment + " Assignment Finished";
         } else {
@@ -156,7 +164,7 @@ let display = {
             document.getElementById("asgn").innerHTML = assignemnt + " Assignment Finished";
         }
 
-
+        // Ensures the 0 doesnt appear
         APSDisplay = game.assignmentPerSecond();
         if (Number.isInteger(APSDisplay)){
             document.getElementById("aps").innerHTML = APSDisplay + " assignment per second";
@@ -165,11 +173,10 @@ let display = {
             APS = APS.toFixed(2);
             document.getElementById("aps").innerHTML = APS + " assignment per second";
         }
-        // document.getElementById("asgn").innerHTML = game.assignment + " Assignment Finished";
-        // document.getElementById("aps").innerHTML = game.assignmentPerSecond() + " assignment per second";
         document.title = game.assignment + " Assignemnt";
     },
 
+    // Create the shop on load base on what there is
     updateShop: function(){
         document.getElementById("upgradesContainer").innerHTML = ``;
         for(i = 0; i < upgradesItem.name.length; i++){
@@ -187,6 +194,7 @@ let display = {
         }
     },
 
+    // Create the upgrsades on load base on what there is
     updateModifers: function(){
         document.getElementById("modifiersContainer").innerHTML = "";
         for (i = 0; i < upgradeModifiers.name.length; i++){
@@ -200,6 +208,7 @@ let display = {
         }
     }
 }
+
 
 let transcend = {
     requiredAmount: 1000000,
@@ -215,6 +224,7 @@ let transcend = {
         }
     },
 
+    // Reset the game with transende and stat still saved
     reset: function(){
         this.totalAmountGained = this.amount;
         this.numberOfTimes += 1;
@@ -323,6 +333,7 @@ window.setInterval(function(){
     display.updateModifers();
 }, 10000);
 
+// used to add assignemnt. To use for test and debug
 function debugAdd(x){
     game.assignment = game.assignment + x;
     return game.assignment
@@ -424,6 +435,7 @@ let profile = {
     }
 }
 
+// Calculate the offline amount
 window.addEventListener("DOMContentLoaded", function() {
     var loadDate = new Date();
     if(profile.name == "false"){
@@ -463,6 +475,7 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 })
 
+// Logs you out
 window.onbeforeunload = () => {
     localStorage.setItem("username", "false")
 }
