@@ -14,7 +14,7 @@ body{
     padding: 0px;
     margin: 0px;
 }
-/* Log in Page */
+/* ------------------------------------------------ Log in Page ------------------------------------ */
 .loginbackground{
     background-image: url(Images/background-2.0.png);
 }
@@ -112,7 +112,7 @@ body{
 .terms{
     display: none;
 }
-/* Home Page */
+/* ----------------------------------------------- Home Page ------------------------------------------------- */
 .banner{
     display: flex;
     justify-content: center;
@@ -221,7 +221,7 @@ body{
     transform: scale(1.05);
     
 }
-/* Guide Page */
+/* ------------------------------------------------------------ Guide Page ------------------------------------ */
 .guidebanner{
     display: flex;
     justify-content: center;
@@ -451,7 +451,7 @@ body{
     margin: 0px;
     font-size: 30px;
 }
-/* Game Page */
+/* ---------------------------------------------------- Game Page ------------------------------------------------ */
 .gameinsert{
     display: flex;
     padding:20px;
@@ -637,7 +637,7 @@ body{
     font-size: 25px;
 }
 
-/* -------------------------------------------------Creator Page---------------------------- */
+/* -------------------------------------------------Creator Page--------------------------------------------------- */
 .creatorbanner{
     display: flex;
     justify-content: center;
