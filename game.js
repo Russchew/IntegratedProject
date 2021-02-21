@@ -38,7 +38,7 @@ let game = {
 // "buildings" 
 let upgradesItem = {
     name: ["Pens", "Paper", "Classmate", "Laptop", "Teacher", "Robot"],
-    img: ["images/Pen.png", "images/Paper.png", "images/Classmate.png", "images/Laptop.png", "images/Teacher.png", "images/robot.png"],
+    img: ["Images/Pen.png", "Images/Paper.png", "Images/Classmate.png", "Images/Laptop.png", "Images/Teacher.png", "Images/robot.png"],
     basePrice: [10, 100, 500, 1000, 10000, 1000000],
     price: [10, 100, 500, 1000, 10000, 1000000],
     owned: [0, 0 ,0, 0, 0, 0],
